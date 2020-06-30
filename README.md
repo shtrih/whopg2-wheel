@@ -1,2 +1,2 @@
-# WHOPG
-Инвентарь, события и колесо для стримерского ивента WHOPG (Home Price Gauntlet 2) на https://twitch.tv.
+# WhoPG
+Колесо для стримерского ивента WhoPG на https://twitch.tv.

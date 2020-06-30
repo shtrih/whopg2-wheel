@@ -1,12 +1,9 @@
-/*
- * Copyright (c) 2020. shtrih
- */
 @import url(range.css);
 
 html, body {
 	margin: 0;
 	padding: 0;
-	background: #19153a;
+	background: #1d0000;
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
@@ -22,6 +19,9 @@ a {
 }
 a:hover {
 	color: #ddd;
+}
+label:hover {
+	cursor: pointer;
 }
 .content {
 	display: flex;
@@ -49,7 +49,7 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: radial-gradient(closest-side, transparent 70%, #19153a);
+	background: radial-gradient(closest-side, transparent 70%, #1d0000);
 	/*box-shadow: 0 0 30px #19153a;*/
 }
 #volume-control {
@@ -168,7 +168,7 @@ button:disabled {
 }
 .hero-background-overlay {
 	position: absolute;
-	background: linear-gradient(to bottom, rgba(49,52,61,0) 0%, rgba(25, 21, 58, 0.70) 50%, #19153a 100%);
+	background: linear-gradient(to bottom, rgba(49,52,61,0) 0%, rgba(29, 0, 0, 0.7) 20%, #1d0000 100%);
 	/*height: 150%;*/
 	height: 100%;
 	width: 100%;
@@ -195,12 +195,13 @@ button:disabled {
 	animation-play-state: paused;
 }
 #wheel-data-sets {
+	padding: 10px;
 	position: absolute;
-	bottom: -150px;
+	bottom: 10px;
 	color: #ccc;
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 80%;
 	justify-content: space-between;
 	user-select: none;
 	/*opacity: 0.6;*/
@@ -208,6 +209,12 @@ button:disabled {
 }
 #wheel-data-sets:hover {
 	/*opacity: 1;*/
+}
+#wheel-data-sets a {
+	color: #ccc;
+}
+#wheel-data-sets a:hover {
+	color: #eee;
 }
 #wheel-data-sets .break {
 	flex-basis: 100%;
@@ -237,6 +244,9 @@ button:disabled {
 	max-height: 300px;
 	text-align: left;
 	overflow-y: scroll;
+}
+.dialog .options label {
+	line-height: 1.4em;
 }
 .dialog hr {
 	width: 50%;

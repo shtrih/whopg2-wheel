@@ -1,86 +1,70 @@
-/*
- * Copyright (c) 2020. shtrih
- */
-
 const dataSets = {
-    inventory: [
+    items: [
+        'Стримбернар',
+        'Выключенный ОБС',
+        'Успешная вылазка',
+        'Шуточное колесо',
+        'КОКтейль бунтаря',
         'Щit',
         'Комбинезон химзащиты',
-        'Рулон туалетной бумаги',
         'Респиратор',
         'Одноразовые перчатки',
         'Банка шпината',
-        'Крышка от мусорного бака',
-        'Ремонтный набор',
-        'Антисептик',
         'Рука для фистинга имени Билли Херрингтона',
-        'Сексуальные чулки',
-        'Четырехлистный клевер',
         'Кукла вуду',
         'Набор выживальщика',
         'Наперсток удачи',
         'Переносной телепорт',
         'Футляр',
-        'Жилетка Вассермана',
-        'Стул мамы Мерфи',
-        'Шиш кебаб',
         'Альпинистский трос',
         'Хакерский компьютер',
         'Корона короля петучей',
-        'Благословение Хакса',
         'Порошок прозрения',
-    ],
-    effects: [
         'Мистер Ржавчик',
-        'Облизанный ободок унитаза',
-        'Ловушка Джокера',
-        'Знаток выгоды',
-        'Стримбернар',
-        'В бухгалтерии все перепутали',
         'Скупщик гречи',
-        'Грабли',
-        'Выключенный ОБС',
         'ОПЯТЬ НДИДИ',
-        'Шуточное колесо',
         'Вор',
-        'Чат выбирает',
-        'Ультрамошна',
-        'Суд присяжных',
         'Тест на вирус',
-        'Успешная вылазка',
-        'Штаны на 40 хрывень',
-        'ВзрывОчка',
-        'Залутанная локация',
+        'Штаны за 40 хрывень',
+        'Пустышка',
         'Конченное событие',
         'Комбо неудач',
-        'Дух Рэмбо',
-        'Настоящий бунтарь',
+        'Три топора',
+        'Не та позиция тебе выпала',
+        'Повязка Рэмбо',
+        'Пиццианская башня',
+        'Крышка от мусорного бака',
+        'Сексуальные чулки',
+        'Проклятая жилетка Вассермана',
+        'Шиш кебаб',
+        'Два по цене одного',
+        'Интрига',
+        'По магазинам с чатом',
+        'Наелся и спит',
+        'Факер опять переписывает правила',
+        'В бухгалтерии все перепутали',
+        'Ловушка Джокера',
+        'Грабли',
+        'Ультрамошна',
+        'ВзрывОчка',
+        'Сраное колдунье',
+        'РокировОЧКА',
+        'Полное свинство',
+        'Открытая пачка сухариков',
+        'Сырое мясо',
+        'Кефир с замазанным сроком годности',
+        'Таблетки без названия',
+        'Сладкий рулет ХуПГ',
+        'Сахарные бомбы',
+    ],
+    supeshiaru: [
         'Чуйка на говно',
-        'Не та позиция тебе выпала, стремлер',
         'Выбор Бумера',
         'Выбор Зумера',
         'Чат здесь закон',
         'Я здесь закон',
-        'Три топора',
-        'Сраное колдунье',
-        'Два по цене одного',
-        'Интрига',
-        'РокировОЧКА',
-        'По магазинам с чатом',
-        'Открытая пачка сухариков',
-        'Сырое мясо',
-        'Проблев',
-        'Кефир с замазанным сроком годности',
-        'Таблетки без названия',
-        'Сладкий рулет ХПГ',
-        'Подземное убежище',
-        'Аттракцион невиданной щедрости',
         'Never Lucky',
-        'Сахарные бомбы',
-        'Наелся и спит',
-        'Предательский столб',
-        'Падение пиццианской башни',
-        'Полное свинство',
+        'Четырёхлистный клевер',
     ],
     coin: [
         'Орёл',
@@ -96,32 +80,14 @@ const dataSets = {
         'Ребро!',
     ],
     streamers: [
-        'MistaFaker',
-        'Lasqa',
-        'Liz0n',
-        'Melharucos',
-        'UselessMouth',
-        'UncleBjorn',
+        'Balabama',
+        'NAMVSEYASNO',
+        'usachman',
+        'Westmage',
     ],
-    debuffs: [
-        'Мистер Ржавчик',
-        'Облизанный ободок унитаза',
-        'Скупщик гречи',
-        'ОПЯТЬ НДИДИ',
-        'Вор',
-        'Чат выбирает',
-        'Тест на вирус',
-        'Штаны на 40 хрывень',
-        'Залутанная локация',
-        'Конченное событие',
-        'Комбо неудач',
-        'Дух Рэмбо',
-        'Не та позиция тебе выпала, стремлер',
-        'Чуйка на говно',
-        'Три топора',
-        'Аттракцион невиданной щедрости',
-        'Предательский столб',
-        'Падение пиццианской башни',
+    corona: [
+        'Тест положительный',
+        'Тест отрицательный',
     ]
 };
 let currentDataSet = 'inventory',
@@ -143,8 +109,8 @@ const editDialog = document.getElementById('dialog-edit'),
 
         return options;
     },
-    resetEditedDataSet = function () {
-        editedDataSets[currentDataSet] = Object.fromEntries(dataSets[currentDataSet].map(v => v).sort().map(v => [v, true]));
+    resetEditedDataSet = function (toState = true) {
+        editedDataSets[currentDataSet] = Object.fromEntries(dataSets[currentDataSet].map(v => v).sort().map(v => [v, toState]));
     },
     editedDataToArray = function () {
         let result = [];
@@ -182,9 +148,10 @@ editConfirmButton.addEventListener('click', function () {
 });
 
 class Preset {
-    constructor(title, disabledEntries, isDefault) {
+    constructor(title, entries, isTurnOnEntries, isDefault) {
         this._title = title;
-        this._disabledEntries = disabledEntries;
+        this._entries = entries;
+        this._isTurnOn = Boolean(isTurnOnEntries);
         this._isDefault = Boolean(isDefault);
     }
 
@@ -203,11 +170,11 @@ class Preset {
     }
 
     handleClick() {
-        resetEditedDataSet();
+        resetEditedDataSet(!this._isTurnOn);
 
-        for(const i in this._disabledEntries) {
-            if (editedDataSets[currentDataSet][this._disabledEntries[i]]) {
-                editedDataSets[currentDataSet][this._disabledEntries[i]] = false;
+        for(const i in this._entries) {
+            if (editedDataSets[currentDataSet][this._entries[i]] !== undefined) {
+                editedDataSets[currentDataSet][this._entries[i]] = this._isTurnOn;
             }
         }
 
@@ -219,7 +186,7 @@ class Preset {
 
 class PresetAll extends Preset {
     constructor(isDefault) {
-        super('Выбрать всё', [], isDefault);
+        super('Выбрать всё', [], false, isDefault);
     }
 }
 
@@ -228,13 +195,70 @@ class PresetWithoutSpecialRolls extends Preset {
         super(
             'Без спецроллов',
             [
-                'Чуйка на говно',
-                'Выбор Бумера',
-                'Выбор Зумера',
-                'Чат здесь закон',
-                'Я здесь закон',
-                'Never Lucky',
+                'Факер опять переписывает правила',
             ],
+            false,
+            isDefault
+        );
+    }
+}
+
+class PresetOnlyBuffs extends Preset {
+    constructor(isDefault) {
+        super(
+            'Только баффы',
+            [
+                'Стримбернар',
+                'Выключенный ОБС',
+                'Успешная вылазка',
+                'Шуточное колесо',
+                'КОКтейль бунтаря',
+                'Щit',
+                'Комбинезон химзащиты',
+                'Респиратор',
+                'Одноразовые перчатки',
+                'Банка шпината',
+                'Рука для фистинга имени Билли Херрингтона',
+                'Кукла вуду',
+                'Набор выживальщика',
+                'Наперсток удачи',
+                'Переносной телепорт',
+                'Футляр',
+                'Альпинистский трос',
+                'Хакерский компьютер',
+                'Корона короля петучей',
+                'Порошок прозрения',
+            ],
+            true,
+            isDefault
+        );
+    }
+}
+
+class PresetOnlyDebuffs extends Preset {
+    constructor(isDefault) {
+        super(
+            'Только дебаффы',
+            [
+                'Мистер Ржавчик',
+                'Скупщик гречи',
+                'ОПЯТЬ НДИДИ',
+                'Вор',
+                'Тест на вирус',
+                'Штаны за 40 хрывень',
+                'Пустышка',
+                'Конченное событие',
+                'Комбо неудач',
+                'Три топора',
+                'Не та позиция тебе выпала',
+                'Повязка Рэмбо',
+                'Пиццианская башня',
+                'Крышка от мусорного бака',
+                'Сексуальные чулки',
+                'Проклятая жилетка Вассермана',
+                'Шиш кебаб',
+            ],
+            true,
             isDefault
         );
     }
@@ -243,16 +267,14 @@ class PresetWithoutSpecialRolls extends Preset {
 class Presets {
     constructor() {
         this._presets = {
-            // inventory: [
-            //     new PresetAll(),
-            // ],
-            effects: [
+            items: [
                 new PresetAll(),
-                new PresetWithoutSpecialRolls(true),
+                new PresetOnlyBuffs(),
+                new PresetOnlyDebuffs(),
+                // new PresetWithoutSpecialRolls(),
             ],
-            debuffs: [
+            speciaru: [
                 new PresetAll(),
-                new PresetWithoutSpecialRolls(true),
             ],
             streamers: [
                 new PresetAll(),
@@ -268,11 +290,11 @@ class Presets {
         let result = [];
 
         for(const i in this._presets[dataSetKey]) {
-            if (i % 2) {
-                result.push(document.createTextNode(', '));
-            }
+            result.push(document.createTextNode(', '));
             result.push(this._presets[dataSetKey][i].domNode);
         }
+
+        result.shift();
 
         return result;
     }
@@ -290,35 +312,80 @@ const presets = new Presets;
 
 function getImageURI(index) {
     let result = 'images/items/000.png',
-        offset = 0
+        mapping = []
     ;
     switch (currentDataSet) {
-        case "inventory":
-            offset = 50;
-        case "effects":
-            result = 'images/items/0' + ('0' + (index+1 + offset)).slice(-2) + '.png';
-            break;
-
-        case "debuffs":
-            const mapping = [
+        case "items":
+            mapping = [
+                5,
+                9,
+                17,
+                11,
+                24,
+                51,
+                52,
+                54,
+                55,
+                56,
+                60,
+                63,
+                64,
+                65,
+                66,
+                67,
+                71,
+                72,
+                73,
+                75,
                 1,
-                2,
                 7,
                 10,
                 12,
-                13,
                 16,
                 18,
                 20,
                 21,
                 22,
-                23,
-                26,
-                25,
                 31,
-                44,
-                48,
-                49
+                45,
+                23,
+                49,
+                57,
+                61,
+                68,
+                70,
+                33,
+                34,
+                36,
+                47,
+                26,
+                6,
+                3,
+                8,
+                14,
+                19,
+                32,
+                35,
+                50,
+                37,
+                38,
+                40,
+                41,
+                42,
+                46,
+            ];
+            result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
+            break;
+
+        case "supeshiaru":
+            mapping = [
+                25,
+                27,
+                28,
+                13,
+                30,
+                45,
+                62,
             ];
             result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
             break;
@@ -335,6 +402,10 @@ function getImageURI(index) {
 
         case "streamers":
             result = 'images/streamers/'+ dataSets[currentDataSet][index] +'.png';
+            break;
+
+        case "corona":
+            result = 'images/items/016.png';
             break;
     }
 
@@ -396,7 +467,7 @@ p5Instance.onSelectItem = function(data, selectedKey) {
         image.src = getImageURI(dataSets[currentDataSet].indexOf(data[selectedKey]));
     }
     else {
-        image.src = 'images/000.png';
+        image.src = 'images/items/000.png';
     }
 };
 

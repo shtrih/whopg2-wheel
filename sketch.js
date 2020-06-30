@@ -89,7 +89,7 @@ function wheelSketch(_p5) {
 
         const background = document.querySelector('.image-grid');
 
-        button = _p5.createButton('Roll');
+        button = _p5.createButton('Крутить');
         button.parent(document.querySelector('.content'));
         // button.position(width / 2, height);
         button.mousePressed(function () {

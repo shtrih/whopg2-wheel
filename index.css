@@ -1,9 +1,18 @@
 @import url(range.css);
 
+@font-face {
+	font-family: "Oswald-Regular";
+	src: url('Oswald-Regular.ttf');
+}
+@font-face {
+	font-family: "Oswald-Light";
+	src: url('Oswald-Light.ttf');
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
-	background: #1d0000;
+	background: #141E30;
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
@@ -11,9 +20,11 @@ html, body {
 	align-content: center;
 	align-items: center;
 	justify-content: center;
-	font-family: Calibri, serif;
+	font-family: "Oswald-Light", Calibri, sans-serif;
 	color: #eee;
+	/*background-image: linear-gradient(to top, #141E30 0%, #243B55 100%);*/
 }
+/*background-image: linear-gradient(to top, #09203f 0%, #537895 100%);*/
 a {
 	color: #9fd9ff;
 }
@@ -49,8 +60,7 @@ label:hover {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: radial-gradient(closest-side, transparent 70%, #1d0000);
-	/*box-shadow: 0 0 30px #19153a;*/
+	background: radial-gradient(closest-side, transparent 70%, #141E30);
 }
 #volume-control {
 	/*position: absolute;*/
@@ -122,7 +132,7 @@ button:disabled {
 .image-grid {
 	min-width: 1280px;
 	position: absolute;
-	animation: animatedBackground 40s linear infinite;
+	animation: animatedBackground 60s linear infinite;
 	opacity: .5;
 	height: 100%;
 	display: flex;
@@ -168,7 +178,7 @@ button:disabled {
 }
 .hero-background-overlay {
 	position: absolute;
-	background: linear-gradient(to bottom, rgba(49,52,61,0) 0%, rgba(29, 0, 0, 0.7) 20%, #1d0000 100%);
+	background: linear-gradient(to bottom, rgba(49,52,61,0) 0%, rgba(20, 30, 48, 0.9) 50%, #141E30 100%);
 	/*height: 150%;*/
 	height: 100%;
 	width: 100%;
@@ -188,7 +198,7 @@ button:disabled {
 	}
 	100% {
 		opacity: 0;
-		transform: scale(1.25) rotateX(25deg) translateX(-10px) translateY(-50%)
+		transform: scale(1.25) rotateX(25deg) translateX(0px) translateY(-50%)
 	}
 }
 .animation-paused {
@@ -226,10 +236,10 @@ button:disabled {
 	top: 50%;
 	margin: -25%;
 	min-width: 250px;
-	background-color: #272167;
+	background-color: #141E30;
 	padding: 10px;
 	border-radius: .25rem;
-	border: 2px solid #332a7e;
+	border: 2px solid #1c3b55;
 	text-align: center;
 	display: none;
 
@@ -237,7 +247,7 @@ button:disabled {
 	outline: 9999px solid rgba(0,0,0,0.5);
 }
 .dialog textarea {
-	background-color: #151235;
+	background-color: #1c3b55;
 	color: #eee;
 }
 .dialog .options {

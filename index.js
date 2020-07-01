@@ -308,15 +308,16 @@ class PresetOnlyDebuffs extends Preset {
 class Presets {
     constructor() {
         this._presets = {
-            items: [
+            /*items: [
                 new PresetAll(),
                 new PresetOnlyBuffs(),
                 new PresetOnlyDebuffs(),
                 // new PresetWithoutSpecialRolls(),
             ],
-            speciaru: [
+            supeshiaru: [
                 new PresetAll(),
             ],
+            */
             streamers: [
                 new PresetAll(),
             ],

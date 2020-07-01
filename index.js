@@ -595,11 +595,13 @@ for(let i = 0; i < radios.length; i++) {
             }
 
             p5Instance.setData(editedDataToArray());
-            editButton.removeAttribute('disabled');
+
+            this.parentElement.append(editButton);
+            editButton.className = '';
         }
         else {
             p5Instance.setData(dataSets[currentDataSet]);
-            editButton.setAttribute('disabled', 'disabled');
+            editButton.className = 'hide';
         }
     });
 

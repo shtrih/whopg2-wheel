@@ -2,7 +2,7 @@
  * Copyright (c) 2020. shtrih
  */
 
-function wheelSketch(_p5) {
+function WheelSketch(_p5) {
     const radius = 160,
         diameter = radius * 2,
         itemsPerScreen = 7,
@@ -87,7 +87,8 @@ function wheelSketch(_p5) {
 
         // alignToRow();
 
-        const background = document.querySelector('.image-grid');
+        const background = document.querySelector('.image-grid'),
+            videoContainer = document.getElementById('video');
 
         button = _p5.createButton('Крутить');
         button.parent(document.querySelector('.content'));
@@ -111,17 +112,24 @@ function wheelSketch(_p5) {
 
                 // _p5.print(circlesCountForDataLength());
                 // _p5.print(totalRows);
+
+                videoContainer.classList = 'play';
+                button.elt.style.visibility = 'hidden';
+
                 animate(
                     tickCounter,
                     counter,
                     counter + height_str * totalRows,
                     duration,
                     () => {
+                        // background.style.display = null;
+                        button.elt.style.visibility = null;
+                        videoContainer.classList = '';
+                        background.classList = 'image-grid';
+
                         animCounterStop();
                         video.pause();
                         alignToRow();
-                        // background.style.display = null;
-                        background.classList = 'image-grid';
                     },
                     easeInOutSine
                 );

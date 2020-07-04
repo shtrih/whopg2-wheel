@@ -25,13 +25,11 @@ class Video {
     async play() {
         this._resetCurrentTime();
         this._video.volume = this.volume;
-        this._video.style.display = 'unset';
         await this._video.play();
     }
 
     pause() {
         this._video.pause();
-        this._video.style.display = 'none';
         this.changeVideo();
     }
 

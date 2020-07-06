@@ -510,7 +510,7 @@ p5Instance.onAfterSetup = function () {
         // ['videos/учит крутить рулём под phonk.mp4', 5],
         ['videos/Папич-марш  прощание славянки .9мая.mp4', 7],
         ['videos/Putin walking meme (Full version).mp4', 32],
-        ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 15, 28],
+        ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 14, 28],
         // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],
         ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 73, 29],
         ['videos/JOJO\'S BIZARRE MAKEUP TUTORIAL.mp4', 6],

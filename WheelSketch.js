@@ -147,7 +147,7 @@ function WheelSketch(_p5) {
     };
 
     function decreaseVolume(videoDurationMs) {
-        const decreasingDuration = 3000;
+        const decreasingDuration = 2000;
         setTimeout(function () {
             animate(function (v) {
                 video.setVolume(v);
@@ -418,7 +418,7 @@ function WheelSketch(_p5) {
             tickCounter,
             counter,
             newValue,
-            1000,
+            1500,
             function () {
                 animCounterStop();
                 if (endCallback) {

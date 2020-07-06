@@ -95,7 +95,7 @@ function WheelSketch(_p5) {
         // button.position(width / 2, height);
         button.mousePressed(function () {
             if (!isCounterAnimation) {
-                const duration = 22000,
+                const duration = video.getDuration() * 1000 || 22000,
                     correction = data_key(data.length, 2 - selectedKey),
                     randomKey = Math.floor(_p5.random(data.length)),
                     totalRows = (data.length * circlesCountForDataLength() + randomKey - correction)
@@ -113,8 +113,12 @@ function WheelSketch(_p5) {
                 // _p5.print(circlesCountForDataLength());
                 // _p5.print(totalRows);
 
-                videoContainer.classList = 'play';
+                videoContainer.style.animation = `play-video ${duration / 1000}s`;
+                // videoContainer.classList = 'play';
                 button.elt.style.visibility = 'hidden';
+
+                // background.style.display = 'none';
+                background.classList = 'image-grid animation-paused';
 
                 animate(
                     tickCounter,
@@ -124,7 +128,8 @@ function WheelSketch(_p5) {
                     () => {
                         // background.style.display = null;
                         button.elt.style.visibility = null;
-                        videoContainer.classList = '';
+                        videoContainer.style.animation = null;
+                        // videoContainer.classList = '';
                         background.classList = 'image-grid';
 
                         animCounterStop();
@@ -134,9 +139,6 @@ function WheelSketch(_p5) {
                     easeInOutSine
                 );
             }
-
-            // background.style.display = 'none';
-            background.classList = 'image-grid animation-paused';
 
             return false;
         });

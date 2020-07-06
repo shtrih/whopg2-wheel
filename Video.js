@@ -2,6 +2,16 @@
  * Copyright (c) 2020. shtrih
  */
 class Video {
+    static get KEY_URL() {
+        return 0;
+    }
+    static get KEY_START_TIME() {
+        return 1;
+    }
+    static get KEY_DURATION() {
+        return 2;
+    }
+
     /**
      * @type Array videoURLs
      */
@@ -55,11 +65,17 @@ class Video {
         }
 
         this._source.src = this._urls[ this._current_index ];
+        this._duration = 0;
         if (Array.isArray(this._urls[ this._current_index ])) {
-            this._source.src = this._urls[ this._current_index ][0];
+            this._source.src = this._urls[ this._current_index ][ Video.KEY_URL ];
+            this._duration = this._urls[ this._current_index ][ Video.KEY_DURATION ] || 0;
         }
 
         this._video.load();
+    }
+
+    getDuration() {
+        return this._duration;
     }
 
     _getRandomIndex() {
@@ -80,7 +96,7 @@ class Video {
     _resetCurrentTime() {
         this._video.currentTime = 0;
         if (Array.isArray(this._urls[ this._current_index ])) {
-            this._video.currentTime = this._urls[ this._current_index ][1] || 0;
+            this._video.currentTime = this._urls[ this._current_index ][ Video.KEY_START_TIME ] || 0;
         }
     }
 

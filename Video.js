@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2020. shtrih
- */
 class Video {
     static get KEY_URL() {
         return 0;

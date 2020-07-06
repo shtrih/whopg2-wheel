@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020. shtrih
- */
-
 function WheelSketch(_p5) {
     const radius = 160,
         diameter = radius * 2,
@@ -61,16 +57,13 @@ function WheelSketch(_p5) {
         canvas.parent('canvas');
 
         _p5.textSize(23);
-        // textFont('Calibri');
         _p5.textFont(fontRegular);
         _p5.textLeading(24);
         _p5.fill(200);
 
         circleTop = (_p5.height - diameter) / 2 + _p5.textAscent() / 3;
         circleCenterY = circleTop + radius;
-        // counter = height_str * 3 + radius - circleTop + radius;
         counter = counterInitial;
-        // counter = height_str/2;
 
         video = new Video(videosList);
 
@@ -81,18 +74,13 @@ function WheelSketch(_p5) {
                 video.setVolume(0);
             }
         });
-
         // frameRate(30);
-
-
-        // alignToRow();
 
         const background = document.querySelector('.image-grid'),
             videoContainer = document.getElementById('video');
 
         button = _p5.createButton('Крутить');
         button.parent(document.querySelector('.content'));
-        // button.position(width / 2, height);
         button.mousePressed(function () {
             if (!isCounterAnimation) {
                 const duration = video.getDuration() * 1000 || 22000,
@@ -107,11 +95,8 @@ function WheelSketch(_p5) {
                 _p5.triggerSelectItem();
 
                 const $dataKey = data_key(data.length, 2 - randomKey);
-                // button.elt.textContent = `Result ${randomKey} → ${$dataKey}. ${data[$dataKey]}`;
-                // _p5.print(`Result ${randomKey} → ${$dataKey}. ${data[$dataKey]}`);
 
                 // _p5.print(circlesCountForDataLength());
-                // _p5.print(totalRows);
 
                 videoContainer.style.animation = `play-video ${duration / 1000}s`;
                 // videoContainer.classList = 'play';
@@ -160,19 +145,6 @@ function WheelSketch(_p5) {
         return Math.ceil(needHeight / (height_str * data.length));
     }
 
-    /*
-    _p5.mouseReleased = () => {
-        if (_p5.mouseX > _p5.width || _p5.mouseY > _p5.height) {
-            return;
-        }
-        if (isCounterAnimation) {
-            return;
-        }
-
-        // setTimeout(alignToRow, 1000);
-    };
-    */
-
     _p5.mouseDragEnable = (state = true) => {
         mouseDragEnable = state;
     };
@@ -204,95 +176,6 @@ function WheelSketch(_p5) {
 
     _p5.draw = () => {
         _p5.clear();
-        // background(220);
-        /*
-
-            //<editor-fold desc="Bezier">
-            push();
-            stroke(255, 102, 0);
-            noFill();
-
-            let x1 = centerX,
-                y1 = circleCenterY - radius,
-                x2 = centerX + 0.552284749831 * radius,
-                y2 = circleCenterY - radius,
-                x3 = centerX + radius,
-                y3 = circleCenterY - radius * 0.552284749831,
-                x4 = centerX + radius,
-                y4 = circleCenterY
-            ;
-            bezier(
-                x1, y1,
-                x2, y2,
-
-                x3, y3,
-                x4, y4
-            );
-            line(
-                x1, y1,
-                x2, y2,
-            );
-            line(
-                x3, y3,
-                x4, y4
-            );
-
-            let steps = 10;
-            /!* for (let i = 0; i <= steps; i++) {
-              let t = i / steps;
-              let x = bezierPoint(x1, x2, x3, x4, t);
-              let y = bezierPoint(y1, y2, y3, y4, t);
-              ellipse(x, y, 5, 5);
-            } *!/
-
-            let c = floor(map(counter, counterInitial, counterMax, 0, radius, true)) / radius;
-            let x = bezierPoint(x1, x2, x3, x4, c);
-            let y = bezierPoint(y1, y2, y3, y4, c);
-
-            stroke(255, 112, 255);
-            ellipse(x, y, 5, 5);
-            ellipse(diameter * 1.1665 - y, x + radius, 5, 5);
-
-            x1 = centerX + radius;
-            y1 = circleCenterY;
-            x2 = centerX + radius;
-            y2 = circleCenterY + 0.552284749831 * radius;
-            x3 = 0.552284749831 * radius + centerX;
-            y3 = circleCenterY + radius;
-            x4 = centerX;
-            y4 = circleCenterY + radius;
-
-            bezier(
-                x1, y1,
-                x2, y2,
-
-                x3, y3,
-                x4, y4
-            );
-            line(
-                x1, y1,
-                x2, y2,
-            );
-            line(
-                x3, y3,
-                x4, y4
-            );
-
-            for (let i = 0; i <= steps; i++) {
-                let t = i / steps + c;
-                let x = bezierPoint(x1, x2, x3, x4, t);
-                let y = bezierPoint(y1, y2, y3, y4, t);
-                ellipse(x, y, 5, 5);
-            }
-
-            pop();
-            //</editor-fold>
-        */
-
-        // vect(counter, counterInitial, counterMax);
-
-        // _p5.line(centerX + 60, 0, centerX + 60, _p5.height);
-        // _p5.line(0, _p5.height / 2, _p5.width, _p5.height / 2);
 
         animationsMap.forEach(function (startAnimation) {
             startAnimation();
@@ -312,24 +195,17 @@ function WheelSketch(_p5) {
             if (counter < counterInitial) {
                 counter = counterMax;
             }
-            // else {
-            //   incrementCounter(-1);
-            // }
         }
-        // text(`${Math.floor(frameRate())} ${counter.toFixed(2)}, ${counterDelta.toFixed(2)}`, 20, 20);
 
         for (let i = -data.length - 2; i < itemsPerScreen + 1; i++) {
-            // let x = crcl(counter + height_str * i, radius, circleTop, centerX);
             let {x, y} = vect(counter + height_str * i + radius, circleTop, circleTop + diameter, false);
-            // x += centerX;
+
             if (x < centerX - 45) {
                 continue;
             }
 
             _p5.push();
             _p5.translate(centerX, circleCenterY);
-
-            // textSize(map(x, centerX, centerX + radius, 18, 24, true));
 
             scaleFactor = _p5.map(x, centerX, centerX + radius, 1, 1.5, false);
             x = x * (2 - scaleFactor);
@@ -339,32 +215,23 @@ function WheelSketch(_p5) {
             _p5.fill(255, Math.round(_p5.map(x + 50, centerX, centerX + radius, 0, 255, true)));
 
             let key = data_key(data.length, i);
-            // stroke(255, 102, 110);
-            // line(0, -textAscent()/2, width, -textAscent()/2);
+
             if (y < _p5.textAscent() / 2
                 && y > -_p5.textAscent()
             ) {
                 _p5.fill(255, 102, 0);
                 _p5.noStroke();
 
-                // stroke(255, 102, 110);
-                // line(0, y, width, y);
-
-                // textSize(25);
-                // textStyle(BOLD);
                 if (key !== selectedKey) {
                     selectedKey = key;
 
                     _p5.onSelectItem(data, selectedKey);
                 }
             }
-            // line(0, textAscent(), width, textAscent());
 
             _p5.text(data[key], x, y, 400);
             _p5.pop()
         }
-
-        // text(`Выпало: ${data[selectedKey]}`, 0, height);
     };
 
     function vect(current, from, to, overflow = true) {
@@ -437,8 +304,6 @@ function WheelSketch(_p5) {
         }
         counterDelta = v - counterPrevTickValue;
         counter += counterDelta;
-        // print(counter.toFixed(2));
-        // incrementCounter(v - counterPrevTickValue);
         counterPrevTickValue = v;
     }
 
@@ -460,8 +325,6 @@ function WheelSketch(_p5) {
                     timeNorm = timeSpent / duration,
                     completionNorm = easingEq(timeNorm),
                     newNum = startNum + completionNorm * changeInNum;
-
-                // text(`${startNum}:${endNum}=${newNum}`, 0, height - 30);
 
                 if (timeSpent > duration) {
                     animationsMap.delete(`${startNum},${endNum},${duration}`);

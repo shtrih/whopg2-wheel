@@ -537,6 +537,7 @@ p5Instance.onAfterSetup = function () {
         'videos/La Cumbia Del Coronavirus.mp4',
         ['videos/usachman - Привет из 3182.mp4', 0, 26],
         'videos/namvseyasno-shrekophone.mp4',
+        ['videos/Новая заставка для Дмитрия Гордона.mp4', 0, 17],
         // 'videos/01.mp4',
         'videos/02.mp4',
         // 'videos/03.mp4',

@@ -539,6 +539,8 @@ p5Instance.onAfterSetup = function () {
         'videos/namvseyasno-shrekophone.mp4',
         ['videos/Новая заставка для Дмитрия Гордона.mp4', 0, 17],
         ['videos/liz0N - Пятница (песенка про Minecraft).mp4', 31, 32],
+        ['videos/ХРЮШЕНЬКИНЫ САПОГИ.mp4', 0, 30],
+        ['videos/а нал Проокофьев (карантиновидение).mp4', 0, 30],
         // 'videos/01.mp4',
         'videos/02.mp4',
         // 'videos/03.mp4',

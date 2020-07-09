@@ -523,6 +523,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 54],
         ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Instance.random([75, 136])],
         ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
+        ['videos/HOOD NARUTO  pt.4 (full video) naruto vs pain.mp4', 23, 32],
         'videos/14686000376951.webm',
         'videos/6 отвлекающих кадров.mp4',
         'videos/[Re-upload] [1080p] HONK HONK.mp4',

@@ -84,22 +84,17 @@ function WheelSketch(_p5) {
         button.parent(document.querySelector('.content'));
         button.mousePressed(function () {
             if (!isCounterAnimation) {
-                const duration = video.getDuration() * 1000 || 22000,
-                    correction = data_key(data.length, 2 - selectedKey),
-                    randomKey = Math.floor(_p5.random(data.length)),
-                    totalRows = (data.length * circlesCountForDataLength() + randomKey - correction)
+                const durationSec = video.getDuration() || 22,
+                    totalRows = getTotalRowsForDurationAndSpeed(durationSec)
                 ;
+
                 video.play().catch(console.error);
-                decreaseVolume(duration);
+                decreaseVolume(durationSec);
 
                 array_shuffle(data);
                 _p5.triggerSelectItem();
 
-                const $dataKey = data_key(data.length, 2 - randomKey);
-
-                // _p5.print(circlesCountForDataLength());
-
-                videoContainer.style.animation = `play-video ${duration / 1000}s`;
+                videoContainer.style.animation = `play-video ${durationSec}s`;
                 // videoContainer.classList = 'play';
                 button.elt.style.visibility = 'hidden';
 
@@ -110,7 +105,7 @@ function WheelSketch(_p5) {
                     tickCounter,
                     counter,
                     counter + height_str * totalRows,
-                    duration,
+                    durationSec * 1000,
                     () => {
                         // background.style.display = null;
                         button.elt.style.visibility = null;
@@ -132,18 +127,17 @@ function WheelSketch(_p5) {
         _p5.onAfterSetup();
     };
 
-    function decreaseVolume(videoDurationMs) {
+    function decreaseVolume(videoDurationSec) {
         const decreasingDuration = 2000;
         setTimeout(function () {
             animate(function (v) {
                 video.setVolume(v);
             }, video.volume, 0, decreasingDuration, null, easeLinear);
-        }, videoDurationMs - decreasingDuration);
+        }, videoDurationSec * 1000 - decreasingDuration);
     }
 
-    function circlesCountForDataLength() {
-        const needHeight = height_str * itemsPerScreen * 7;
-        return Math.ceil(needHeight / (height_str * data.length));
+    function getTotalRowsForDurationAndSpeed(videoDurationSec = 22, speedItemsPerSec = 3) {
+        return speedItemsPerSec * videoDurationSec;
     }
 
     _p5.mouseDragEnable = (state = true) => {
@@ -316,19 +310,19 @@ function WheelSketch(_p5) {
         // setTimeout(idle, 1000);
     }
 
-    function animate(tickHook, startNum, endNum, duration, callback, easingEq) {
+    function animate(tickHook, startNum, endNum, durationMs, callback, easingEq) {
         easingEq = easingEq || easeOutExpo;
         const changeInNum = endNum - startNum,
             startTime = Date.now(),
             engine = function () {
                 const now = Date.now(),
                     timeSpent = now - startTime,
-                    timeNorm = timeSpent / duration,
+                    timeNorm = timeSpent / durationMs,
                     completionNorm = easingEq(timeNorm),
                     newNum = startNum + completionNorm * changeInNum;
 
-                if (timeSpent > duration) {
-                    animationsMap.delete(`${startNum},${endNum},${duration}`);
+                if (timeSpent > durationMs) {
+                    animationsMap.delete(`${startNum},${endNum},${durationMs}`);
                     if (callback) {
                         callback();
                     }
@@ -339,7 +333,7 @@ function WheelSketch(_p5) {
             }
         ;
 
-        animationsMap.set(`${startNum},${endNum},${duration}`, engine);
+        animationsMap.set(`${startNum},${endNum},${durationMs}`, engine);
     }
 
     /**

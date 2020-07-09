@@ -77,9 +77,10 @@ function WheelSketch(_p5) {
         // frameRate(30);
 
         const background = document.querySelector('.image-grid'),
-            videoContainer = document.getElementById('video');
+            videoContainer = document.getElementById('video'),
+            button = _p5.createButton('Крутить')
+        ;
 
-        button = _p5.createButton('Крутить');
         button.parent(document.querySelector('.content'));
         button.mousePressed(function () {
             if (!isCounterAnimation) {
@@ -317,10 +318,10 @@ function WheelSketch(_p5) {
 
     function animate(tickHook, startNum, endNum, duration, callback, easingEq) {
         easingEq = easingEq || easeOutExpo;
-        var changeInNum = endNum - startNum,
-            startTime = Date.now(), //millis(),
+        const changeInNum = endNum - startNum,
+            startTime = Date.now(),
             engine = function () {
-                var now = Date.now(), //millis(),
+                const now = Date.now(),
                     timeSpent = now - startTime,
                     timeNorm = timeSpent / duration,
                     completionNorm = easingEq(timeNorm),

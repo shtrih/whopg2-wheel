@@ -482,12 +482,12 @@ function getImageURI(index) {
             break;
 
         case "coin":
-            result = 'images/coin-obverse-20.png';
+            result = 'images/coins/russia-100-rubles-1993-ob.png';
             if (index === 1) {
-                result = 'images/coin-reverse-20.png';
+                result = 'images/coins/russia-100-rubles-1993-rev.png';
             }
             if (index === 10) {
-                result = 'images/coin-gurt.png';
+                result = 'images/coins/coin-gurt.png';
             }
             break;
 

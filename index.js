@@ -544,6 +544,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/а нал Проокофьев (карантиновидение).mp4', 0, 30],
         ['videos/Dj Eban.mp4', 36],
         ['videos/RONDONDON  (official music video) Lil John & Eastside boyz- Get Low (cover).mp4', 0, 30],
+        ['videos/blinding-lights.mp4', 0, 31],
         'videos/faina.mp4',
         'videos/Enjoykin — Ламповая Няша.mp4',
         // 'videos/01.mp4',

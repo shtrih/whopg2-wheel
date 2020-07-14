@@ -509,7 +509,10 @@ p5Instance.onAfterSetup = function () {
     p5Instance.setVideos([
         // ['videos/учит крутить рулём под phonk.mp4', 5],
         ['videos/Папич-марш  прощание славянки .9мая.mp4', 7],
-        ['videos/Putin walking meme (Full version).mp4', 32],
+        p5Instance.random([
+            ['videos/Putin walking meme (Full version).mp4', 32],
+            'videos/wide-cj.mp4',
+        ]),
         ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 14, 28],
         // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],
         ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 73, 29],
@@ -542,7 +545,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/liz0N - Пятница (песенка про Minecraft).mp4', 31, 32],
         ['videos/ХРЮШЕНЬКИНЫ САПОГИ.mp4', 0, 30],
         ['videos/а нал Проокофьев (карантиновидение).mp4', 0, 30],
-        ['videos/Dj Eban.mp4', 36],
+        ['videos/Dj Eban.mp4', 48],
         ['videos/RONDONDON  (official music video) Lil John & Eastside boyz- Get Low (cover).mp4', 0, 30],
         ['videos/blinding-lights.mp4', 0, 31],
         'videos/faina.mp4',

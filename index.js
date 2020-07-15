@@ -507,7 +507,6 @@ const p5Instance = new p5(WheelSketch);
 
 p5Instance.onAfterSetup = function () {
     p5Instance.setVideos([
-        // ['videos/учит крутить рулём под phonk.mp4', 5],
         ['videos/Папич-марш  прощание славянки .9мая.mp4', 7],
         p5Instance.random([
             ['videos/Putin walking meme (Full version).mp4', 32],
@@ -517,9 +516,8 @@ p5Instance.onAfterSetup = function () {
         // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],
         ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 73, 29],
         ['videos/JOJO\'S BIZARRE MAKEUP TUTORIAL.mp4', 6],
-        ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
+        // ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
         ['videos/Сыновья России. Кто пчелок уважает.mp4', 26],
-        // ['videos/[SFM] Shrekophone.mp4', 15],
         ['videos/Мэддисон - Shooting Stars.mp4', 13],
         ['videos/All Star but they don\'t stop coming pitch corrected.mp4', 20],
         ['videos/U GOT THAT   LASQA EDITION.mp4', 9],
@@ -535,7 +533,6 @@ p5Instance.onAfterSetup = function () {
         ['videos/Не Твое Дело - Я буду рядом.mp4', 0, 30],
         'videos/Music make you lose control triangle.mp4',
         'videos/Танец под волчок из  Что Где Когда.mp4',
-        // 'videos/Лизон в ХПГ.mp4',
         ['videos/Мэддисон дрифтит под Фонк.mp4', 0, 25],
         'videos/La Cumbia Del Coronavirus.mp4',
         ['videos/usachman - Привет из 3182.mp4', 0, 26],

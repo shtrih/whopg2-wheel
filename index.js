@@ -509,8 +509,9 @@ p5Instance.onAfterSetup = function () {
     p5Instance.setVideos([
         ['videos/Папич-марш  прощание славянки .9мая.mp4', 7],
         p5Instance.random([
-            ['videos/Putin walking meme (Full version).mp4', 32],
+            // ['videos/Putin walking meme (Full version).mp4', 32],
             'videos/wide-cj.mp4',
+            'videos/wide-putin-ascii.mp4',
         ]),
         ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 14, 28],
         // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],

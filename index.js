@@ -543,10 +543,10 @@ p5Instance.onAfterSetup = function () {
         ['videos/blinding-lights.mp4', 0, 31],
         ['videos/Sailor Moon OP1.mp4', 0, 32],
         ['videos/Antonio Banderas, Los Lobos • Desperado.mp4', 0, 30],
-        p5Instance.random([
+        // p5Instance.random([
             ['videos/I\'m a Bee.mp4', 0, 23],
-            ['videos/I\'m a Bee.mp4', 23, 25],
-        ]),
+            // ['videos/I\'m a Bee.mp4', 23, 25],
+        // ]),
         'videos/faina.mp4',
         'videos/Enjoykin — Ламповая Няша.mp4',
         'videos/mausu.mp4',

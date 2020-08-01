@@ -61,11 +61,17 @@ class Video {
             this._current_index = 0;
         }
 
-        this._source.src = this._urls[ this._current_index ];
         this._duration = 0;
-        if (Array.isArray(this._urls[ this._current_index ])) {
-            this._source.src = this._urls[ this._current_index ][ Video.KEY_URL ];
-            this._duration = this._urls[ this._current_index ][ Video.KEY_DURATION ] || 0;
+
+        let video = this._urls[ this._current_index ];
+        if (typeof(video) === 'function') {
+            video = this._urls[ this._current_index ]();
+        }
+
+        this._source.src = video;
+        if (Array.isArray(video)) {
+            this._source.src = video[ Video.KEY_URL ];
+            this._duration = video[ Video.KEY_DURATION ] || 0;
         }
 
         this._video.load();

@@ -507,7 +507,7 @@ const p5Instance = new p5(WheelSketch);
 
 p5Instance.onAfterSetup = function () {
     p5Instance.setVideos([
-        p5Instance.random([
+        () => p5Instance.random([
             ['videos/Putin walking meme (Full version).mp4', 32],
             'videos/wide-cj.mp4',
             'videos/wide-putin-ascii.mp4',
@@ -521,7 +521,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/Сыновья России. Кто пчелок уважает.mp4', 26],
         ['videos/All Star but they don\'t stop coming pitch corrected.mp4', 20],
         ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 54],
-        ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Instance.random([75, 136])],
+        () => ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Instance.random([75, 136])],
         ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
         ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 46, 25],
         ['videos/HOOD NARUTO  pt.4 (full video) naruto vs pain.mp4', 23, 32],
@@ -544,7 +544,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/blinding-lights.mp4', 0, 31],
         ['videos/Sailor Moon OP1.mp4', 0, 32],
         ['videos/Antonio Banderas, Los Lobos • Desperado.mp4', 0, 30],
-        p5Instance.random([
+        () => p5Instance.random([
             ['videos/I\'m a Bee.mp4', 0, 23],
             ['videos/I\'m a Bee.mp4', 23, 25],
         ]),
@@ -554,11 +554,11 @@ p5Instance.onAfterSetup = function () {
 
         ['videos/streamers/Папич-марш  прощание славянки .9мая.mp4', 7],
         ['videos/streamers/Мэддисон - Shooting Stars.mp4', 13],
-        p5Instance.random([
+        () => p5Instance.random([
             ['videos/streamers/Мэддисон дрифтит под Фонк.mp4', 0, 25],
             ['videos/учит крутить рулём под phonk.mp4', 5],
         ]),
-        p5Instance.random([
+        () => p5Instance.random([
             'videos/streamers/namvseyasno-shrekophone.mp4',
             ['videos/[SFM] Shrekophone.mp4', 15],
         ]),

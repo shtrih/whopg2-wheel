@@ -14,6 +14,7 @@ class Video {
      */
     constructor(videoURLs) {
         this._current_index = null;
+        this._current_video = null;
         this._urls = videoURLs;
         /**@type HTMLVideoElement */
         this._video = document.querySelector('video');
@@ -73,6 +74,7 @@ class Video {
             this._source.src = video[ Video.KEY_URL ];
             this._duration = video[ Video.KEY_DURATION ] || 0;
         }
+        this._current_video = video;
 
         this._video.load();
     }
@@ -98,8 +100,8 @@ class Video {
 
     _resetCurrentTime() {
         this._video.currentTime = 0;
-        if (Array.isArray(this._urls[ this._current_index ])) {
-            this._video.currentTime = this._urls[ this._current_index ][ Video.KEY_START_TIME ] || 0;
+        if (Array.isArray(this._current_video)) {
+            this._video.currentTime = this._current_video[ Video.KEY_START_TIME ] || 0;
         }
     }
 

@@ -540,7 +540,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/а нал Проокофьев (карантиновидение).mp4', 0, 30],
         ['videos/дора, МЭЙБИ БЭЙБИ — Не исправлюсь.mp4', 0, 30],
         ['videos/Dj Eban.mp4', 48],
-        // ['videos/RONDONDON  (official music video) Lil John & Eastside boyz- Get Low (cover).mp4', 0, 30],
+        // ['videos/RONDONDON  (official music video) Lil John & Eastside boyz- Get Low (cover).mp4', 0, 30], // Not cool
         ['videos/blinding-lights.mp4', 0, 31],
         ['videos/Sailor Moon OP1.mp4', 0, 32],
         ['videos/Antonio Banderas, Los Lobos • Desperado.mp4', 0, 30],
@@ -570,23 +570,23 @@ p5Instance.onAfterSetup = function () {
         // 'videos/streamers/Крутое ХПГ.webm',
         // 'videos/streamers/Лизон в ХПГ.mp4',
 
-        'videos/01.mp4',
+        // 'videos/01.mp4', // Crab rave
         'videos/02.mp4',
-        'videos/03.mp4',
+        // 'videos/03.mp4', // AAAAAAAT
         'videos/04.mp4',
         'videos/06.mp4',
-        'videos/08.mp4',
+        // 'videos/08.mp4', // HPG
         'videos/09.mp4',
         'videos/10.mp4',
         'videos/12.mp4',
         'videos/13.mp4',
         'videos/14.mp4',
         // 'videos/16.mp4', // banned
-        'videos/17.mp4',
+        // 'videos/17.mp4', // U got that
         'videos/18.mp4',
         'videos/19.mp4',
-        'videos/20.mp4',
-        'videos/21.mp4',
+        // 'videos/20.mp4', // HPG
+        // 'videos/21.mp4', // HPG
     ]);
 };
 

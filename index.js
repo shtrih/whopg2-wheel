@@ -512,9 +512,11 @@ p5Instance.onAfterSetup = function () {
             'videos/wide-cj.mp4',
             'videos/wide-putin-ascii.mp4',
         ]),
-        ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 14, 28],
-        // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],
-        ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 73, 29],
+        () => p5Instance.random([
+            ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 14, 28],
+            // ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 44, 34],
+            ['videos/BASSBOOSTED   Смешарики-От винта.mp4', 73, 29],
+        ]),
         ['videos/JOJO\'S BIZARRE MAKEUP TUTORIAL.mp4', 6],
         ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
         'videos/Останьте, босмер.mp4',
@@ -566,7 +568,7 @@ p5Instance.onAfterSetup = function () {
         ['videos/streamers/liz0N - Пятница (песенка про Minecraft).mp4', 31, 32],
         ['videos/streamers/U GOT THAT   LASQA EDITION.mp4', 9],
         ['videos/streamers/usachman - Привет из 3182.mp4', 0, 26],
-        'videos/streamers/westmage - kalovik.mp4',
+        // 'videos/streamers/westmage - kalovik.mp4',
         // 'videos/streamers/Крутое ХПГ.webm',
         // 'videos/streamers/Лизон в ХПГ.mp4',
 

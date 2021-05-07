@@ -4,7 +4,11 @@ function WheelSketch(_p5) {
         itemsPerScreen = 7,
         height_str = diameter / itemsPerScreen,
         counterInitial = 0,
-        centerX = 60
+        centerX = 60,
+        hasNonprintableChars = string => /[^\x00-\x7F\u0410-\u044FЁё]/.test(string),
+        startAnimationHandler = function (startAnimation) {
+            startAnimation();
+        }
     ;
     let data = [],
         videosList = [
@@ -24,11 +28,15 @@ function WheelSketch(_p5) {
         scaleFactor,
         fontRegular,
         mouseDragEnable = true,
-        touchYPrev = 0
+        touchYPrev = 0,
+        useDefaultFont = false
     ;
 
     _p5.setData = function (_data) {
         data = [..._data];
+
+        // If text contains unsupported by external Oswald-Regular characters
+        useDefaultFont = hasNonprintableChars(data.join());
 
         counterMax = data.length * height_str;
         counter = counterInitial;
@@ -74,7 +82,7 @@ function WheelSketch(_p5) {
                 video.setVolume(0);
             }
         });
-        // frameRate(30);
+        // _p5.frameRate(30);
 
         const background = document.querySelector('.image-grid'),
             videoContainer = document.getElementById('video'),
@@ -171,10 +179,15 @@ function WheelSketch(_p5) {
 
     _p5.draw = () => {
         _p5.clear();
+        if (useDefaultFont) {
+            _p5.textFont('Georgia');
+            _p5.textAlign(_p5.LEFT, _p5.BOTTOM);
+        }
+        else {
+            _p5.textFont(fontRegular);
+        }
 
-        animationsMap.forEach(function (startAnimation) {
-            startAnimation();
-        });
+        animationsMap.forEach(startAnimationHandler);
 
         if (counterDelta > 0) {
             if (counter < counterMax) {

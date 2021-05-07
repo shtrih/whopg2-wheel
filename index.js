@@ -163,6 +163,35 @@ const editDialog = document.getElementById('dialog-edit'),
         }
 
         return result;
+    },
+    radioClickHandler = function () {
+        currentDataSet = this.value;
+
+        if (currentDataSet === 'custom') {
+            p5Instance.mouseDragEnable(false);
+            customDialog.style.display = 'block';
+
+            return;
+        }
+
+        customDialog.style.display = 'none';
+        p5Instance.mouseDragEnable();
+
+        if (presets.hasPreset(currentDataSet)) {
+            if (!editedDataSets[currentDataSet]) {
+                resetEditedDataSet();
+                presets.applyDefaults(currentDataSet);
+            }
+
+            p5Instance.setData(editedDataToArray());
+
+            this.parentElement.append(editButton);
+            editButton.className = '';
+        }
+        else {
+            p5Instance.setData(dataSets[currentDataSet]);
+            editButton.className = 'hide';
+        }
     }
 ;
 
@@ -597,17 +626,46 @@ p5Instance.onAfterSetup = function () {
 
 const image = document.querySelector('#item-image img');
 p5Instance.onSelectItem = function(data, selectedKey) {
+    let url = 'images/items/000.png';
     if (dataSets[currentDataSet]) {
-        image.src = getImageURI(dataSets[currentDataSet].indexOf(data[selectedKey]));
+        const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
+        if (imageIndex !== -1) {
+            url = getImageURI(imageIndex);
+        }
     }
-    else {
-        image.src = 'images/items/000.png';
+
+    if (image.src !== url) {
+        image.src = url;
     }
 };
 
 const customDialog = document.getElementById('custom-list'),
     customTextarea = customDialog.getElementsByTagName('textarea')[0],
-    customButton = customDialog.getElementsByTagName('button')[0]
+    customButton = customDialog.getElementsByTagName('button')[0],
+    saveCustomData = function (stringData) {
+        const url = new URL(window.location);
+
+        url.search = new URLSearchParams({custom: stringData});
+        console.log(url.toString());
+        history.pushState({}, '', url.toString());
+    },
+    loadCustomData = function () {
+        const urlSearchParams = new URL(window.location).searchParams,
+            list = urlSearchParams.get('custom')
+        ;
+
+        return list;
+    },
+    applyCustomData = function (customData) {
+        const customRadio = document.querySelector('[name="list"][value="custom"]');
+        customTextarea.value = customData;
+
+        customButton.dispatchEvent(new Event('click'));
+        customRadio.setAttribute('checked', true);
+    },
+    windowPopStateHandler = function (event) {
+        applyCustomData(loadCustomData());
+    }
 ;
 
 customButton.addEventListener('click', function () {
@@ -615,42 +673,23 @@ customButton.addEventListener('click', function () {
 
     p5Instance.setData(customTextarea.value.split('\n'));
     p5Instance.mouseDragEnable();
+
+    saveCustomData(customTextarea.value);
 });
 
 let radios = document.querySelectorAll('[name="list"]');
 for(let i = 0; i < radios.length; i++) {
-    radios[i].addEventListener('click', function () {
-        currentDataSet = this.value;
-
-        if (this.value === 'custom') {
-            p5Instance.mouseDragEnable(false);
-            customDialog.style.display = 'block';
-
-            return;
-        }
-
-        customDialog.style.display = 'none';
-        p5Instance.mouseDragEnable();
-
-        if (presets.hasPreset(currentDataSet)) {
-            if (!editedDataSets[currentDataSet]) {
-                resetEditedDataSet();
-                presets.applyDefaults(currentDataSet);
-            }
-
-            p5Instance.setData(editedDataToArray());
-
-            this.parentElement.append(editButton);
-            editButton.className = '';
-        }
-        else {
-            p5Instance.setData(dataSets[currentDataSet]);
-            editButton.className = 'hide';
-        }
-    });
+    radios[i].addEventListener('click', radioClickHandler);
 
     // Выбираем начальный вариант при загрузке страницы
     if (radios[i].hasAttribute('checked')) {
         radios[i].dispatchEvent(new Event('click'));
     }
 }
+
+const customData = loadCustomData();
+if (customData) {
+    applyCustomData(customData);
+}
+
+window.onpopstate = windowPopStateHandler;

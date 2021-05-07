@@ -522,7 +522,10 @@ p5Instance.onAfterSetup = function () {
         'videos/Останьте, босмер.mp4',
         ['videos/Сыновья России. Кто пчелок уважает.mp4', 26],
         ['videos/All Star but they don\'t stop coming pitch corrected.mp4', 20],
-        ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 54],
+        () => p5Instance.random([
+            ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 54],
+            ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 108],
+        ]),
         () => ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Instance.random([75, 136])],
         ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
         ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 46, 25],
@@ -552,7 +555,7 @@ p5Instance.onAfterSetup = function () {
         ]),
         'videos/faina.mp4',
         'videos/Enjoykin — Ламповая Няша.mp4',
-        'videos/mausu.mp4',
+        // 'videos/mausu.mp4',
 
         ['videos/streamers/Папич-марш  прощание славянки .9мая.mp4', 7],
         ['videos/streamers/Мэддисон - Shooting Stars.mp4', 13],

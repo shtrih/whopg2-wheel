@@ -246,6 +246,8 @@
 
         <input id="volume-control" type="range" step="0.1" value="0.5" max="1" min="0" title="Громкость видео" />
 
+        <span><input id="with-dmca" type="checkbox" /><label for="with-dmca">Воспроизводить DMCA-треки</label></span>
+
         <a id="rules" href="rules">Таблица WhoPG</a>
 
         <div>
@@ -255,13 +257,16 @@
             &nbsp;
             <a id="sources"
                title="Посмотреть исходный код колеса"
-               href="https://github.com/shtrih/whopg-wheel" target="_blank"></a>
+               href="https://github.com/shtrih/whopg2-wheel" target="_blank"></a>
         </div>
     </div>
 
     <script src="p5.min.js"></script>
     <script src="WheelSketch.js"></script>
     <script src="Video.js"></script>
+    <script src="CheckboxStateable.js"></script>
+    <script src="videos-protected.js"></script>
+    <script src="videos-free.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

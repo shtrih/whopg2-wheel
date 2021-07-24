@@ -176,7 +176,7 @@
 
         <div id="item-image">
             <div class="arc"></div>
-            <img src="" alt="" />
+            <img src="images/items/026.png" alt="" />
         </div>
 
         <div id="custom-list" class="dialog">
@@ -201,28 +201,24 @@
         <button id="btn-edit" title="Редактировать список" class="hide"></button>
 
         <div>
-            <input type="radio" id="huey" name="list" value="items" autocomplete="off" checked />
-            <label for="huey">Шмотки и события</label><!--
+            <input type="radio" id="huey" name="list" value="items" autocomplete="off" />
+            <label for="huey">Шмотки</label><!--
             no spaces
         --></div>
 
         <div>
-            <input type="radio" id="buffs" name="list" value="buffs" autocomplete="off" />
-            <label for="buffs">Баффы</label>
-        </div>
-        <div>
-            <input type="radio" id="debuffs" name="list" value="debuffs" autocomplete="off" />
-            <label for="debuffs">Дебаффы</label>
+            <input type="radio" id="imp" name="list" value="implants" autocomplete="off" checked />
+            <label for="imp">Импланты</label>
         </div>
 
         <div>
-            <input type="radio" id="dewey" name="list" value="supeshiaru" autocomplete="off" />
-            <label for="dewey">Специфический ролл</label>
+            <input type="radio" id="meet" name="list" value="meetings" autocomplete="off" />
+            <label for="meet">Случайные встречи</label>
         </div>
 
         <div>
-            <input type="radio" id="corona" name="list" value="corona" autocomplete="off" />
-            <label for="corona">Тест на вирус</label>
+            <input type="radio" id="dewey" name="list" value="injuries" autocomplete="off" data-show-edit-dialog="1" />
+            <label for="dewey">Ранения</label>
         </div>
 
         <div>
@@ -244,11 +240,11 @@
 
         <div class="break"></div>
 
-        <input id="volume-control" type="range" step="0.1" value="0.5" max="1" min="0" title="Громкость видео" />
+        <span><input id="volume-control" type="range" step="0.05" value="0.5" max="1" min="0" title="Громкость видео" />
 
-        <span><input id="with-dmca" type="checkbox" /><label for="with-dmca">Воспроизводить DMCA-треки</label></span>
+        <input id="with-dmca" type="checkbox" /><label for="with-dmca">Воспроизводить DMCA-треки</label></span>
 
-        <a id="rules" href="rules">Таблица WhoPG</a>
+<!--        <a id="rules" href="rules">Таблица WhoPG</a>-->
 
         <div>
             <!-- a id="video-suggest"
@@ -265,6 +261,10 @@
     <script src="WheelSketch.js"></script>
     <script src="Video.js"></script>
     <script src="CheckboxStateable.js"></script>
+    <script src="data.js"></script>
+    <script src="Preset.js"></script>
+    <script src="presets.js"></script>
+    <script src="PresetManager.js"></script>
     <script src="videos-protected.js"></script>
     <script src="videos-free.js"></script>
     <script src="index.js"></script>

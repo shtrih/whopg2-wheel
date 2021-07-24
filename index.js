@@ -1,136 +1,4 @@
-const dataSets = {
-    items: [
-        'Стримбернар',
-        'Выключенный ОБС',
-        'Успешная вылазка',
-        'Шуточное колесо',
-        'КОКтейль бунтаря',
-        'Щit',
-        'Комбинезон химзащиты',
-        'Респиратор',
-        'Одноразовые перчатки',
-        'Банка шпината',
-        'Рука для фистинга имени Билли Херрингтона',
-        'Кукла вуду',
-        'Набор выживальщика',
-        'Наперсток удачи',
-        'Переносной телепорт',
-        'Футляр',
-        'Альпинистский трос',
-        'Хакерский компьютер',
-        'Корона короля петучей',
-        'Порошок прозрения',
-        'Мистер Ржавчик',
-        'Скупщик гречи',
-        'ОПЯТЬ НДИДИ',
-        'Вор',
-        'Тест на вирус',
-        'Штаны за 40 хрывень',
-        'Пустышка',
-        'Конченное событие',
-        'Комбо неудач',
-        'Три топора',
-        'Не та позиция тебе выпала',
-        'Повязка Рэмбо',
-        'Пиццианская башня',
-        'Крышка от мусорного бака',
-        'Сексуальные чулки',
-        'Проклятая жилетка Вассермана',
-        'Шиш кебаб',
-        'Два по цене одного',
-        'Интрига',
-        'По магазинам с чатом',
-        'Наелся и спит',
-        'Факер опять переписывает правила',
-        'В бухгалтерии все перепутали',
-        'Ловушка Джокера',
-        'Грабли',
-        'Ультрамошна',
-        'ВзрывОчка',
-        'Сраное колдунье',
-        'РокировОЧКА',
-        'Полное свинство',
-        'Открытая пачка сухариков',
-        'Сырое мясо',
-        'Кефир с замазанным сроком годности',
-        'Таблетки без названия',
-        'Сладкий рулет ХуПГ',
-        'Сахарные бомбы',
-    ],
-    supeshiaru: [
-        'Чуйка на говно',
-        'Выбор Бумера',
-        'Выбор Зумера',
-        'Чат здесь закон',
-        'Я здесь закон',
-        'Never Lucky',
-        'Четырёхлистный клевер',
-    ],
-    buffs: [
-        'Стримбернар',
-        'Выключенный ОБС',
-        'Успешная вылазка',
-        'Шуточное колесо',
-        'КОКтейль бунтаря',
-        'Щit',
-        'Комбинезон химзащиты',
-        'Респиратор',
-        'Одноразовые перчатки',
-        'Банка шпината',
-        'Рука для фистинга имени Билли Херрингтона',
-        'Кукла вуду',
-        'Набор выживальщика',
-        'Наперсток удачи',
-        'Переносной телепорт',
-        'Футляр',
-        'Альпинистский трос',
-        'Хакерский компьютер',
-        'Корона короля петучей',
-        'Порошок прозрения',
-    ],
-    debuffs: [
-        'Мистер Ржавчик',
-        'Скупщик гречи',
-        'ОПЯТЬ НДИДИ',
-        'Вор',
-        'Тест на вирус',
-        'Штаны за 40 хрывень',
-        'Пустышка',
-        'Конченное событие',
-        'Комбо неудач',
-        'Три топора',
-        'Не та позиция тебе выпала',
-        'Повязка Рэмбо',
-        'Пиццианская башня',
-        'Крышка от мусорного бака',
-        'Сексуальные чулки',
-        'Проклятая жилетка Вассермана',
-        'Шиш кебаб',
-    ],
-    coin: [
-        'Орёл',
-        'Решка',
-        'Орёл',
-        'Решка',
-        'Орёл',
-        'Решка',
-        'Орёл',
-        'Решка',
-        'Орёл',
-        'Решка',
-        'Ребро!',
-    ],
-    streamers: [
-        'Balabama',
-        'NAMVSEYASNO',
-        'usachman',
-        'Westmage',
-    ],
-    corona: [
-        'Тест положительный',
-        'Тест отрицательный',
-    ]
-};
+
 let currentDataSet = 'inventory',
     editedDataSets = {};
 
@@ -139,6 +7,7 @@ const editDialog = document.getElementById('dialog-edit'),
     editConfirmButton = editDialog.getElementsByClassName('apply')[0],
     editOptions = editDialog.getElementsByClassName('options')[0],
     editPresets = editDialog.getElementsByClassName('presets')[0],
+    presetManager = new PresetManager,
     optionClick = function (option, checked) {
         editedDataSets[currentDataSet][option] = checked;
     },
@@ -151,14 +20,26 @@ const editDialog = document.getElementById('dialog-edit'),
         return options;
     },
     resetEditedDataSet = function (toState = true) {
-        editedDataSets[currentDataSet] = Object.fromEntries(dataSets[currentDataSet].map(v => v).sort().map(v => [v, toState]));
+        editedDataSets[currentDataSet] = Object.fromEntries(
+            dataSets[currentDataSet]
+                .map(v => v)
+                .sort((a, b) => (a.title || a).localeCompare(b.title || b))
+                .map(v => [v.title || v, toState])
+        );
     },
     editedDataToArray = function () {
         let result = [];
 
         for (let [key, value] of Object.entries(editedDataSets[currentDataSet])) {
             if (value) {
-                result.push(key)
+                // only find first element
+                // let index = dataSets[currentDataSet].findIndex(v => (v.title || v) === key);
+                // result.push(dataSets[currentDataSet][index]);
+                for (let i = 0; i < dataSets[currentDataSet].length; i++) {
+                    if ((dataSets[currentDataSet][i].title || dataSets[currentDataSet][i]) === key) {
+                        result.push(dataSets[currentDataSet][i])
+                    }
+                }
             }
         }
 
@@ -177,16 +58,20 @@ const editDialog = document.getElementById('dialog-edit'),
         customDialog.style.display = 'none';
         p5Instance.mouseDragEnable();
 
-        if (presets.hasPreset(currentDataSet)) {
+        if (presetManager.hasPreset(currentDataSet)) {
             if (!editedDataSets[currentDataSet]) {
                 resetEditedDataSet();
-                presets.applyDefaults(currentDataSet);
+                presetManager.applyDefaults(currentDataSet);
             }
 
             p5Instance.setData(editedDataToArray());
 
             this.parentElement.append(editButton);
             editButton.className = '';
+
+            if (this.getAttribute('data-show-edit-dialog')) {
+                editButton.dispatchEvent(new Event('click'));
+            }
         }
         else {
             p5Instance.setData(dataSets[currentDataSet]);
@@ -207,7 +92,7 @@ editButton.addEventListener('click', function () {
     p5Instance.mouseDragEnable(false);
 
     editPresets.innerHTML = '';
-    editPresets.append(...presets.getNodes(currentDataSet));
+    editPresets.append(...presetManager.getNodes(currentDataSet));
     editOptions.innerHTML = generateOptions(editedDataSets[currentDataSet]);
 });
 editConfirmButton.addEventListener('click', function () {
@@ -216,170 +101,6 @@ editConfirmButton.addEventListener('click', function () {
 
     p5Instance.setData(editedDataToArray());
 });
-
-class Preset {
-    constructor(title, entries, isTurnOnEntries, isDefault) {
-        this._title = title;
-        this._entries = entries;
-        this._isTurnOn = Boolean(isTurnOnEntries);
-        this._isDefault = Boolean(isDefault);
-    }
-
-    get isDefault() {
-        return this._isDefault;
-    }
-
-    get domNode() {
-        const el = document.createElement('a');
-
-        el.setAttribute('href', '#');
-        el.appendChild(document.createTextNode(this._title));
-        el.addEventListener('click', this.handleClick.bind(this));
-
-        return el;
-    }
-
-    handleClick() {
-        resetEditedDataSet(!this._isTurnOn);
-
-        for(const i in this._entries) {
-            if (editedDataSets[currentDataSet][this._entries[i]] !== undefined) {
-                editedDataSets[currentDataSet][this._entries[i]] = this._isTurnOn;
-            }
-        }
-
-        editOptions.innerHTML = generateOptions(editedDataSets[currentDataSet]);
-
-        return false;
-    }
-}
-
-class PresetAll extends Preset {
-    constructor(isDefault) {
-        super('Выбрать всё', [], false, isDefault);
-    }
-}
-
-class PresetWithoutSpecialRolls extends Preset {
-    constructor(isDefault) {
-        super(
-            'Без спецроллов',
-            [
-                'Факер опять переписывает правила',
-            ],
-            false,
-            isDefault
-        );
-    }
-}
-
-class PresetOnlyBuffs extends Preset {
-    constructor(isDefault) {
-        super(
-            'Только баффы',
-            [
-                'Стримбернар',
-                'Выключенный ОБС',
-                'Успешная вылазка',
-                'Шуточное колесо',
-                'КОКтейль бунтаря',
-                'Щit',
-                'Комбинезон химзащиты',
-                'Респиратор',
-                'Одноразовые перчатки',
-                'Банка шпината',
-                'Рука для фистинга имени Билли Херрингтона',
-                'Кукла вуду',
-                'Набор выживальщика',
-                'Наперсток удачи',
-                'Переносной телепорт',
-                'Футляр',
-                'Альпинистский трос',
-                'Хакерский компьютер',
-                'Корона короля петучей',
-                'Порошок прозрения',
-            ],
-            true,
-            isDefault
-        );
-    }
-}
-
-class PresetOnlyDebuffs extends Preset {
-    constructor(isDefault) {
-        super(
-            'Только дебаффы',
-            [
-                'Мистер Ржавчик',
-                'Скупщик гречи',
-                'ОПЯТЬ НДИДИ',
-                'Вор',
-                'Тест на вирус',
-                'Штаны за 40 хрывень',
-                'Пустышка',
-                'Конченное событие',
-                'Комбо неудач',
-                'Три топора',
-                'Не та позиция тебе выпала',
-                'Повязка Рэмбо',
-                'Пиццианская башня',
-                'Крышка от мусорного бака',
-                'Сексуальные чулки',
-                'Проклятая жилетка Вассермана',
-                'Шиш кебаб',
-            ],
-            true,
-            isDefault
-        );
-    }
-}
-
-class Presets {
-    constructor() {
-        this._presets = {
-            /*items: [
-                new PresetAll(),
-                new PresetOnlyBuffs(),
-                new PresetOnlyDebuffs(),
-                // new PresetWithoutSpecialRolls(),
-            ],
-            supeshiaru: [
-                new PresetAll(),
-            ],
-            */
-            streamers: [
-                new PresetAll(),
-            ],
-        };
-    }
-
-    hasPreset(dataSetKey) {
-        return !!this._presets[dataSetKey];
-    }
-
-    getNodes(dataSetKey) {
-        let result = [];
-
-        for(const i in this._presets[dataSetKey]) {
-            result.push(document.createTextNode(', '));
-            result.push(this._presets[dataSetKey][i].domNode);
-        }
-
-        result.shift();
-
-        return result;
-    }
-
-    applyDefaults(dataSetKey) {
-        for(const i in this._presets[dataSetKey]) {
-            if (this._presets[dataSetKey][i].isDefault) {
-                this._presets[dataSetKey][i].handleClick();
-            }
-        }
-    }
-}
-
-const presets = new Presets;
 
 function getImageURI(index) {
     let result = 'images/items/000.png',
@@ -548,17 +269,24 @@ p5Instance.onAfterSetup = function () {
 
 const image = document.querySelector('#item-image img');
 p5Instance.onSelectItem = function(data, selectedKey) {
-    let url = 'images/items/000.png';
-    if (dataSets[currentDataSet]) {
-        const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
-        if (imageIndex !== -1) {
-            url = getImageURI(imageIndex);
-        }
-    }
+    let currentUrl = window.location.href;
+    currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
+    let url = currentUrl + '/images/000.png';
+    // if (dataSets[currentDataSet]) {
+    //     const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
+    //     if (imageIndex !== -1) {
+    //         url = getImageURI(imageIndex);
+    //     }
+    // }
 
-    if (image.src !== url) {
-        image.src = url;
+    // if (image.src !== url) {
+    //     image.src = url;
+    // }
+    if (data[selectedKey] && typeof data[selectedKey].image === 'string') {
+        url = currentUrl +'/images'+ data[selectedKey].image;
     }
+    // console.log(data[selectedKey]);
+    image.src = url;
 };
 
 const customDialog = document.getElementById('custom-list'),
@@ -568,7 +296,7 @@ const customDialog = document.getElementById('custom-list'),
         const url = new URL(window.location);
 
         url.search = new URLSearchParams({custom: stringData});
-        console.log(url.toString());
+        // console.log(url.toString());
         history.pushState({}, '', url.toString());
     },
     loadCustomData = function () {
@@ -587,17 +315,18 @@ const customDialog = document.getElementById('custom-list'),
     },
     windowPopStateHandler = function (event) {
         applyCustomData(loadCustomData());
+    },
+    customSubmitHandler = function () {
+        customDialog.style.display = 'none';
+
+        p5Instance.setData(customTextarea.value.split('\n'));
+        p5Instance.mouseDragEnable();
+
+        saveCustomData(customTextarea.value);
     }
 ;
 
-customButton.addEventListener('click', function () {
-    customDialog.style.display = 'none';
-
-    p5Instance.setData(customTextarea.value.split('\n'));
-    p5Instance.mouseDragEnable();
-
-    saveCustomData(customTextarea.value);
-});
+customButton.addEventListener('click', customSubmitHandler);
 
 let radios = document.querySelectorAll('[name="list"]');
 for(let i = 0; i < radios.length; i++) {

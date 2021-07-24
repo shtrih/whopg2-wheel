@@ -1,10 +1,10 @@
 function WheelSketch(_p5) {
-    const radius = 160,
+    const radius = 203,
         diameter = radius * 2,
         itemsPerScreen = 7,
         height_str = diameter / itemsPerScreen,
         counterInitial = 0,
-        centerX = 60,
+        centerX = 10,
         hasNonprintableChars = string => /[^\x00-\x7F\u0410-\u044FЁё]/.test(string),
         startAnimationHandler = function (startAnimation) {
             startAnimation();
@@ -33,10 +33,14 @@ function WheelSketch(_p5) {
     ;
 
     _p5.setData = function (_data) {
-        data = [..._data];
+        // console.log(_data);
+        if (!_data.length) {
+            _data = [''];
+        }
+        data = _data.map(v => (typeof v === "object" ? v : {title: v}));
 
         // If text contains unsupported by external Oswald-Regular characters
-        useDefaultFont = hasNonprintableChars(data.join());
+        useDefaultFont = hasNonprintableChars(data.map(v => v.title).join());
 
         counterMax = data.length * height_str;
         counter = counterInitial;
@@ -56,17 +60,20 @@ function WheelSketch(_p5) {
 
     _p5.preload = () => {
         fontRegular = _p5.loadFont('./Oswald-Regular.ttf');
+        // fontRegular = _p5.loadFont('./fonts/Clickuper/Clickuper.ttf');
     };
 
     _p5.setup = () => {
         counterMax = data.length * height_str;
 
-        const canvas = _p5.createCanvas(750, 400);
+        const canvas = _p5.createCanvas(800, 500);
         canvas.parent('canvas');
 
+        // _p5.textSize(18);
         _p5.textSize(23);
         _p5.textFont(fontRegular);
         _p5.textLeading(24);
+        // _p5.textLeading(18);
         _p5.fill(200);
 
         circleTop = (_p5.height - diameter) / 2 + _p5.textAscent() / 3;
@@ -205,10 +212,11 @@ function WheelSketch(_p5) {
             }
         }
 
-        for (let i = -data.length - 2; i < itemsPerScreen + 1; i++) {
+        let key, i;
+        for (i = -data.length - 2; i < itemsPerScreen + 1; i++) {
             let {x, y} = vect(counter + height_str * i + radius, circleTop, circleTop + diameter, false);
 
-            if (x < centerX - 45) {
+            if (x < 10) {
                 continue;
             }
 
@@ -220,14 +228,17 @@ function WheelSketch(_p5) {
             y = y * (2 - scaleFactor);
             _p5.scale(scaleFactor);
 
-            _p5.fill(255, Math.round(_p5.map(x + 50, centerX, centerX + radius, 0, 255, true)));
+            _p5.fill(255, Math.round(_p5.map(x + 10, centerX, centerX + radius, 0, 255, true)));
 
-            let key = data_key(data.length, i);
+            key = data_key(data.length, i);
 
             if (y < _p5.textAscent() / 2
                 && y > -_p5.textAscent()
             ) {
-                _p5.fill(255, 102, 0);
+                if (!isCounterAnimation) {
+                    _p5.fill(212, 160, 0);
+                }
+
                 _p5.noStroke();
 
                 if (key !== selectedKey) {
@@ -237,14 +248,14 @@ function WheelSketch(_p5) {
                 }
             }
 
-            _p5.text(data[key], x, y, 400);
+            _p5.text(data[key].title, x, y, 450);
             _p5.pop()
         }
     };
 
     function vect(current, from, to, overflow = true) {
-        const offset = 7, // выравниваем центральный элемент списка вертикально по центру
-            overallDegrees = _p5.map(current + offset, from + offset, to, -85, 85, !overflow),
+        const offset = -3, // выравниваем центральный элемент списка вертикально по центру
+            overallDegrees = _p5.map(current + offset, from + offset, to, -90, 90, !overflow),
             v = p5.Vector.fromAngle(_p5.radians(overallDegrees), radius)
         ;
 
@@ -293,7 +304,7 @@ function WheelSketch(_p5) {
             tickCounter,
             counter,
             newValue,
-            1500,
+            1000,
             function () {
                 animCounterStop();
                 if (endCallback) {

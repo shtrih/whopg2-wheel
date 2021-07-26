@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Колесо WhoPG</title>
+    <title>Колесо WhoPG 2</title>
 
     <link rel="stylesheet" href="index.css">
 </head>
@@ -177,6 +177,7 @@
         <div id="item-image">
             <div class="arc"></div>
             <img src="images/items/026.png" alt="" />
+            <div id="canvas2"></div>
         </div>
 
         <div id="custom-list" class="dialog">
@@ -207,24 +208,28 @@
         --></div>
 
         <div>
-            <input type="radio" id="imp" name="list" value="implants" autocomplete="off" checked />
-            <label for="imp">Импланты</label>
-        </div>
+            <input type="radio" id="imp" name="list" value="implants" autocomplete="off" data-show-edit-dialog="1" />
+            <label for="imp">Импланты</label><!--
+            no spaces
+        --></div>
 
         <div>
-            <input type="radio" id="meet" name="list" value="meetings" autocomplete="off" />
-            <label for="meet">Случайные встречи</label>
-        </div>
+            <input type="radio" id="meet" name="list" value="meetings" autocomplete="off" data-show-edit-dialog="1" />
+            <label for="meet">Случайные встречи</label><!--
+            no spaces
+        --></div>
 
         <div>
             <input type="radio" id="dewey" name="list" value="injuries" autocomplete="off" data-show-edit-dialog="1" />
-            <label for="dewey">Ранения</label>
-        </div>
+            <label for="dewey">Ранения</label><!--
+            no spaces
+        --></div>
 
         <div>
-            <input type="radio" id="louie" name="list" value="coin" autocomplete="off" />
-            <label for="louie">Монетка</label>
-        </div>
+            <input type="radio" id="louie" name="list" value="coin" autocomplete="off" checked />
+            <label for="louie">Монетка</label><!--
+            no spaces
+        --></div>
 
         <div>
             <input type="radio" id="webby" name="list" value="streamers" autocomplete="off" />
@@ -240,9 +245,10 @@
 
         <div class="break"></div>
 
-        <span><input id="volume-control" type="range" step="0.05" value="0.5" max="1" min="0" title="Громкость видео" />
-
-        <input id="with-dmca" type="checkbox" /><label for="with-dmca">Воспроизводить DMCA-треки</label></span>
+        <span>
+            <input id="volume-control" type="range" step="0.05" value="0.5" max="1" min="0" title="Громкость видео" />
+            <input id="with-dmca" type="checkbox" /><label for="with-dmca">Воспроизводить DMCA-треки</label>
+        </span>
 
 <!--        <a id="rules" href="rules">Таблица WhoPG</a>-->
 
@@ -250,7 +256,7 @@
             <!-- a id="video-suggest"
                title="Предложить видео"
                href="https://forms.gle/JdFb8YxrTFBU8VTs6" target="_blank"></a -->
-            &nbsp;
+
             <a id="sources"
                title="Посмотреть исходный код колеса"
                href="https://github.com/shtrih/whopg2-wheel" target="_blank"></a>
@@ -258,6 +264,7 @@
     </div>
 
     <script src="p5.min.js"></script>
+    <script src="FPSCounter.js"></script>
     <script src="WheelSketch.js"></script>
     <script src="Video.js"></script>
     <script src="CheckboxStateable.js"></script>

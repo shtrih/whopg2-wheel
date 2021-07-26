@@ -9,15 +9,8 @@ const editDialog = document.getElementById('dialog-edit'),
     editPresets = editDialog.getElementsByClassName('presets')[0],
     presetManager = new PresetManager,
     optionClick = function (option, checked) {
+        option = decodeURIComponent(option);
         editedDataSets[currentDataSet][option] = checked;
-    },
-    generateOptions = function (dataObject) {
-        let options = '';
-        for (let i in dataObject) {
-            options += `<label><input type="checkbox" onchange="optionClick('${i}', this.checked)" ${dataObject[i] ? 'checked' : ''} />${i}</label><br />`;
-        }
-
-        return options;
     },
     resetEditedDataSet = function (toState = true) {
         editedDataSets[currentDataSet] = Object.fromEntries(
@@ -32,9 +25,6 @@ const editDialog = document.getElementById('dialog-edit'),
 
         for (let [key, value] of Object.entries(editedDataSets[currentDataSet])) {
             if (value) {
-                // only find first element
-                // let index = dataSets[currentDataSet].findIndex(v => (v.title || v) === key);
-                // result.push(dataSets[currentDataSet][index]);
                 for (let i = 0; i < dataSets[currentDataSet].length; i++) {
                     if ((dataSets[currentDataSet][i].title || dataSets[currentDataSet][i]) === key) {
                         result.push(dataSets[currentDataSet][i])
@@ -60,7 +50,8 @@ const editDialog = document.getElementById('dialog-edit'),
 
         if (presetManager.hasPreset(currentDataSet)) {
             if (!editedDataSets[currentDataSet]) {
-                resetEditedDataSet();
+                editPresets.innerHTML = '';
+                editPresets.append(...presetManager.getNodes(currentDataSet));
                 presetManager.applyDefaults(currentDataSet);
             }
 
@@ -93,7 +84,7 @@ editButton.addEventListener('click', function () {
 
     editPresets.innerHTML = '';
     editPresets.append(...presetManager.getNodes(currentDataSet));
-    editOptions.innerHTML = generateOptions(editedDataSets[currentDataSet]);
+    presetManager.renderOptions(editedDataSets[currentDataSet]);
 });
 editConfirmButton.addEventListener('click', function () {
     editDialog.style.display = 'none';
@@ -101,157 +92,6 @@ editConfirmButton.addEventListener('click', function () {
 
     p5Instance.setData(editedDataToArray());
 });
-
-function getImageURI(index) {
-    let result = 'images/items/000.png',
-        mapping = []
-    ;
-    switch (currentDataSet) {
-        case "buffs":
-            mapping = [
-                5,
-                9,
-                17,
-                11,
-                24,
-                51,
-                52,
-                54,
-                55,
-                56,
-                60,
-                63,
-                64,
-                65,
-                66,
-                67,
-                71,
-                72,
-                73,
-                75,
-            ];
-            result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
-            break;
-
-        case "debuffs":
-            mapping = [
-                1,
-                7,
-                10,
-                12,
-                16,
-                18,
-                20,
-                21,
-                22,
-                31,
-                45,
-                23,
-                49,
-                57,
-                61,
-                68,
-                70,
-            ];
-            result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
-            break;
-
-        case "items":
-            mapping = [
-                5,
-                9,
-                17,
-                11,
-                24,
-                51,
-                52,
-                54,
-                55,
-                56,
-                60,
-                63,
-                64,
-                65,
-                66,
-                67,
-                71,
-                72,
-                73,
-                75,
-                1,
-                7,
-                10,
-                12,
-                16,
-                18,
-                20,
-                21,
-                22,
-                31,
-                45,
-                23,
-                49,
-                57,
-                61,
-                68,
-                70,
-                33,
-                34,
-                36,
-                47,
-                26,
-                6,
-                3,
-                8,
-                14,
-                19,
-                32,
-                35,
-                50,
-                37,
-                38,
-                40,
-                41,
-                42,
-                46,
-            ];
-            result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
-            break;
-
-        case "supeshiaru":
-            mapping = [
-                25,
-                27,
-                28,
-                13,
-                30,
-                45,
-                62,
-            ];
-            result = 'images/items/0' + ('0' + (mapping[index])).slice(-2) + '.png';
-            break;
-
-        case "coin":
-            result = 'images/coins/russia-100-rubles-1993-ob.png';
-            if (index === 1) {
-                result = 'images/coins/russia-100-rubles-1993-rev.png';
-            }
-            if (index === 10) {
-                result = 'images/coins/coin-gurt.png';
-            }
-            break;
-
-        case "streamers":
-            result = 'images/streamers/'+ dataSets[currentDataSet][index] +'.png';
-            break;
-
-        case "corona":
-            result = 'images/items/016.png';
-            break;
-    }
-
-    return result;
-}
 
 const p5Instance = new p5(WheelSketch);
 
@@ -268,9 +108,125 @@ p5Instance.onAfterSetup = function () {
 };
 
 const image = document.querySelector('#item-image img');
+let currentUrl = window.location.href;
+currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
+
+const p5image = new p5((p) => {
+    let image,
+        isAnimated = false,
+        animationsMap = new Map,
+        animationDraw = (animation) => {
+            animation();
+        }
+    ;
+
+    function createAnimation(tickHook, startNum, endNum, durationMs, callback, easingEq) {
+        easingEq = easingEq || easeInOutSine;
+        const changeInNum = endNum - startNum,
+            startTime = Date.now(),
+            engine = function () {
+                const now = Date.now(),
+                    timeSpent = now - startTime,
+                    timeNorm = timeSpent / durationMs,
+                    completionNorm = easingEq(timeNorm),
+                    newNum = startNum + completionNorm * changeInNum;
+
+                if (timeSpent > durationMs) {
+                    animationsMap.delete(`${startNum},${endNum},${durationMs}`);
+                    if (callback) {
+                        callback();
+                    }
+                }
+                else {
+                    tickHook(newNum);
+                }
+            }
+        ;
+
+        animationsMap.set(`${startNum},${endNum},${durationMs}`, engine);
+    }
+
+    function easeInOutSine(x) {
+        return -(Math.cos(Math.PI * x) - 1) / 2;
+    }
+
+    function easeOutExpo(x) {
+        return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+
+    p.preload = () => {
+        image = p.loadImage('images/frames/ppOverheat.gif');
+    };
+    p.setup = () => {
+        const canvas = p.createCanvas(112, 112);
+        canvas.parent('canvas2');
+    };
+    p.draw = () => {
+        p.clear();
+
+        if (isAnimated) {
+            animationsMap.forEach(animationDraw);
+            p.image(image, 0, 0);
+        }
+    };
+
+    p.onStartWheel = (durationSec) => {
+        isAnimated = true;
+        let drawCallback = (v) => {
+            image.delay(v);
+        };
+
+        createAnimation(drawCallback, 200, 20, durationSec * 1000 / 2, () => {
+            createAnimation(drawCallback, 20, 200, durationSec * 1000 / 2, () => {}, easeInOutSine)
+        }, easeOutExpo);
+    };
+    p.setIsAnimated = (state) => {
+        isAnimated = state;
+    };
+    p.moveAnimation = (delta) => {
+        if (delta > 0) {
+            let delay = Math.ceil(p.map(delta, 0, 10, 200, 4, true));
+            image.delay(delay);
+            return;
+        }
+
+        image.delay(10000);
+    };
+});
+
+p5Instance.onStartWheel = (durationSec) => {
+    if (currentDataSet === 'meetings') {
+        p5image.onStartWheel(durationSec);
+    }
+};
+p5Instance.onStopWheel = () => {
+    // p5image.startAnimation(false);
+};
+
+let deltas = [];
+setInterval(() => {
+    if (currentDataSet === 'meetings') {
+        p5image.setIsAnimated(true);
+
+        let max = deltas.reduce(function(a, b) {
+            return Math.max(a, b);
+        }, 0);
+        deltas = [];
+
+        p5image.moveAnimation(max);
+    }
+    else {
+        p5image.setIsAnimated(false);
+    }
+}, 500);
+
+p5Instance.onMoveWheel = (delta) => {
+    if (currentDataSet === 'meetings') {
+        deltas.push(Math.abs(delta));
+    }
+};
+
 p5Instance.onSelectItem = function(data, selectedKey) {
-    let currentUrl = window.location.href;
-    currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
     let url = currentUrl + '/images/000.png';
     // if (dataSets[currentDataSet]) {
     //     const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
@@ -279,14 +235,13 @@ p5Instance.onSelectItem = function(data, selectedKey) {
     //     }
     // }
 
-    // if (image.src !== url) {
-    //     image.src = url;
-    // }
     if (data[selectedKey] && typeof data[selectedKey].image === 'string') {
         url = currentUrl +'/images'+ data[selectedKey].image;
     }
-    // console.log(data[selectedKey]);
-    image.src = url;
+
+    if (image.src !== url) {
+        image.src = url;
+    }
 };
 
 const customDialog = document.getElementById('custom-list'),
@@ -294,6 +249,8 @@ const customDialog = document.getElementById('custom-list'),
     customButton = customDialog.getElementsByTagName('button')[0],
     saveCustomData = function (stringData) {
         const url = new URL(window.location);
+
+        document.title = 'Колесо WhoPG2 (' + stringData.substring(0, 30) + '…)';
 
         url.search = new URLSearchParams({custom: stringData});
         // console.log(url.toString());

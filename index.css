@@ -8,7 +8,9 @@
 	font-family: "Oswald-Light";
 	src: url('Oswald-Light.ttf');
 }
-
+#canvas2 {
+	position: absolute;
+}
 html, body {
 	margin: 0;
 	padding: 0;
@@ -73,7 +75,7 @@ label:hover {
 	visibility: hidden;
 }
 #video video {
-	height: 450px;
+	height: 500px;
 	object-fit: cover;
 	/*display: none;*/
 }
@@ -283,6 +285,7 @@ button:disabled {
 	border: 2px solid #1c3b55;
 	text-align: center;
 	display: none;
+	font-size: 1.3rem;
 
 	z-index: 10; /* keep on top of other elements on the page */
 	outline: 9999px solid rgba(0,0,0,0.5);
@@ -304,9 +307,19 @@ button:disabled {
 	border-style: dashed;
 	border-width: 1px 0 0 0;
 }
+.dialog :checked + label {
+	color: #9ed9ff;
+}
 .dialog .presets {
 	text-align: left;
 }
+.dialog .presets label:first-letter {
+	text-transform: uppercase;
+}
+.dialog .presets [type="radio"] {
+	display: none;
+}
+.dialog .presets label,
 .dialog .presets a {
 	text-decoration: none;
 	border-bottom: 1px dotted;
@@ -314,19 +327,19 @@ button:disabled {
 .dialog .options::-webkit-scrollbar-track,
 .dialog textarea::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #9ed9ff;
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+	/*background-color: #000000;*/
 }
 .dialog .options::-webkit-scrollbar,
 .dialog textarea::-webkit-scrollbar
 {
 	width: 6px;
-	background-color: #9ed9ff;
+	background-color: #000000;
 }
 .dialog .options::-webkit-scrollbar-thumb,
 .dialog textarea::-webkit-scrollbar-thumb
 {
-	background-color: #000000;
+	background-color: #9ed9ff;
 }
 #sources,
 #video-suggest,

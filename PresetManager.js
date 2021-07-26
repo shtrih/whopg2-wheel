@@ -1,29 +1,29 @@
 class PresetManager {
     constructor() {
         this._presets = {
-            /*items: [
-                new PresetAll(),
-                new PresetOnlyBuffs(),
-                new PresetOnlyDebuffs(),
-                // new PresetWithoutSpecialRolls(),
-            ],
-            supeshiaru: [
-                new PresetAll(),
-            ],
-            */
             implants: [
-                new PresetAll(),
+                new PresetImplantL1(),
+                new PresetImplantL2(),
+                new PresetImplantL3(),
+                new PresetAll(true),
+                new PresetNothing(),
             ],
             meetings: [
-                new PresetAll(),
+                new PresetMeetEZ(),
+                new PresetMeetMedium(),
+                new PresetMeetSemiHard(),
+                new PresetMeetHard(),
+                new PresetAll(true),
+                new PresetNothing(),
             ],
             injuries: [
-                new PresetAll(),
+                new PresetAll(true),
             ],
             streamers: [
-                new PresetAll(),
+                new PresetAll(true),
             ],
         };
+        this._nodes = {};
     }
 
     hasPreset(dataSetKey) {
@@ -31,23 +31,37 @@ class PresetManager {
     }
 
     getNodes(dataSetKey) {
-        let result = [];
+        if (!this._nodes[dataSetKey]) {
+            this._nodes[dataSetKey] = [];
 
-        for(const i in this._presets[dataSetKey]) {
-            result.push(document.createTextNode(', '));
-            result.push(this._presets[dataSetKey][i].domNode);
+            this._presets[dataSetKey].forEach((preset, i) => {
+                this._nodes[dataSetKey].push(document.createTextNode(', '));
+                this._nodes[dataSetKey].push(preset.getDOMNode(dataSetKey, i));
+            });
+
+            this._nodes[dataSetKey].shift();
         }
 
-        result.shift();
-
-        return result;
+        return this._nodes[dataSetKey];
     }
 
     applyDefaults(dataSetKey) {
-        for(const i in this._presets[dataSetKey]) {
-            if (this._presets[dataSetKey][i].isDefault) {
-                this._presets[dataSetKey][i].handleClick();
+        this._presets[dataSetKey].forEach(preset => {
+            preset.presetManager = this;
+            if (preset.isDefault) {
+                preset.activate();
             }
-        }
+        });
+    }
+
+    /**
+     * @param {Preset} preset
+     */
+    set activePreset(preset) {
+        this._activePreset = preset
+    }
+
+    renderOptions = function (dataObject) {
+        this._activePreset.renderOptions(dataObject);
     }
 }

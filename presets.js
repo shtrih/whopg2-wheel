@@ -1,80 +1,96 @@
 
 class PresetAll extends Preset {
     constructor(isDefault) {
-        super('Выбрать всё', [], false, isDefault);
+        super('выбрать всё', [], false, isDefault);
     }
 }
 
-class PresetWithoutSpecialRolls extends Preset {
+class PresetNothing extends Preset {
+    constructor(isDefault) {
+        super('ничего', [], true, isDefault);
+    }
+}
+
+class PresetMeetEZ extends Preset {
     constructor(isDefault) {
         super(
-            'Без спецроллов',
-            [
-                'Факер опять переписывает правила',
-            ],
-            false,
-            isDefault
+            'лёгкая сложность',
+            subSets.meetings.Легкая,
+            true,
+            isDefault,
+            true
         );
     }
 }
 
-class PresetOnlyBuffs extends Preset {
+class PresetMeetMedium extends Preset {
     constructor(isDefault) {
         super(
-            'Только баффы',
-            [
-                'Стримбернар',
-                'Выключенный ОБС',
-                'Успешная вылазка',
-                'Шуточное колесо',
-                'КОКтейль бунтаря',
-                'Щit',
-                'Комбинезон химзащиты',
-                'Респиратор',
-                'Одноразовые перчатки',
-                'Банка шпината',
-                'Рука для фистинга имени Билли Херрингтона',
-                'Кукла вуду',
-                'Набор выживальщика',
-                'Наперсток удачи',
-                'Переносной телепорт',
-                'Футляр',
-                'Альпинистский трос',
-                'Хакерский компьютер',
-                'Корона короля петучей',
-                'Порошок прозрения',
-            ],
+            'средняя',
+            subSets.meetings.Средняя,
             true,
-            isDefault
+            isDefault,
+            true
         );
     }
 }
 
-class PresetOnlyDebuffs extends Preset {
+class PresetMeetSemiHard extends Preset {
     constructor(isDefault) {
         super(
-            'Только дебаффы',
-            [
-                'Мистер Ржавчик',
-                'Скупщик гречи',
-                'ОПЯТЬ НДИДИ',
-                'Вор',
-                'Тест на вирус',
-                'Штаны за 40 хрывень',
-                'Пустышка',
-                'Конченное событие',
-                'Комбо неудач',
-                'Три топора',
-                'Не та позиция тебе выпала',
-                'Повязка Рэмбо',
-                'Пиццианская башня',
-                'Крышка от мусорного бака',
-                'Сексуальные чулки',
-                'Проклятая жилетка Вассермана',
-                'Шиш кебаб',
-            ],
+            'выше среднего',
+            subSets.meetings["Выше среднего"],
             true,
-            isDefault
+            isDefault,
+            true
+        );
+    }
+}
+
+class PresetMeetHard extends Preset {
+    constructor(isDefault) {
+        super(
+            'высокая',
+            subSets.meetings["Высокая"],
+            true,
+            isDefault,
+            true
+        );
+    }
+}
+
+class PresetImplantL1 extends Preset {
+    constructor(isDefault) {
+        super(
+            'уровень 1',
+            subSets.implants["Уровень 1"],
+            true,
+            isDefault,
+            true
+        );
+    }
+}
+
+class PresetImplantL2 extends Preset {
+    constructor(isDefault) {
+        super(
+            'уровень 2',
+            subSets.implants["Уровень 2"],
+            true,
+            isDefault,
+            true
+        );
+    }
+}
+
+class PresetImplantL3 extends Preset {
+    constructor(isDefault) {
+        super(
+            'уровень 3',
+            subSets.implants["Уровень 3"],
+            true,
+            isDefault,
+            true
         );
     }
 }

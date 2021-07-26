@@ -8,7 +8,8 @@ function WheelSketch(_p5) {
         hasNonprintableChars = string => /[^\x00-\x7F\u0410-\u044FЁё]/.test(string),
         startAnimationHandler = function (startAnimation) {
             startAnimation();
-        }
+        },
+        fpsCounter = new FPSCounter(700, 450, 100, 50, _p5)
     ;
     let data = [],
         videosList = [
@@ -63,6 +64,10 @@ function WheelSketch(_p5) {
         // fontRegular = _p5.loadFont('./fonts/Clickuper/Clickuper.ttf');
     };
 
+    _p5.onStartWheel = (durationSec) => {};
+    _p5.onStopWheel = () => {};
+    _p5.onMoveWheel = (delta) => {};
+
     _p5.setup = () => {
         counterMax = data.length * height_str;
 
@@ -103,6 +108,8 @@ function WheelSketch(_p5) {
                     totalRows = getTotalRowsForDurationAndSpeed(durationSec)
                 ;
 
+                _p5.onStartWheel(durationSec);
+
                 video.play().catch(console.error);
                 decreaseVolume(durationSec);
 
@@ -128,6 +135,7 @@ function WheelSketch(_p5) {
                         // videoContainer.classList = '';
                         background.classList = 'image-grid';
 
+                        _p5.onStopWheel();
                         animCounterStop();
                         video.pause();
                         alignToRow();
@@ -186,6 +194,8 @@ function WheelSketch(_p5) {
 
     _p5.draw = () => {
         _p5.clear();
+        fpsCounter.draw();
+
         if (useDefaultFont) {
             _p5.textFont('Georgia');
             _p5.textAlign(_p5.LEFT, _p5.BOTTOM);
@@ -275,6 +285,8 @@ function WheelSketch(_p5) {
         delta = (_p5.deltaTime / 100 * delta);
         counterDelta = delta;
         counter += delta;
+
+        _p5.onMoveWheel(delta);
     }
 
     function data_key(data_len, key) {

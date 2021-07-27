@@ -9,7 +9,8 @@ function WheelSketch(_p5) {
         startAnimationHandler = function (startAnimation) {
             startAnimation();
         },
-        fpsCounter = new FPSCounter(700, 450, 100, 50, _p5)
+        fpsCounter = new FPSCounter(700, 450, 100, 50, _p5),
+        isDebug = new URLSearchParams(document.location.search).get('debug')
     ;
     let data = [],
         videosList = [
@@ -194,7 +195,9 @@ function WheelSketch(_p5) {
 
     _p5.draw = () => {
         _p5.clear();
-        fpsCounter.draw();
+        if (isDebug) {
+            fpsCounter.draw();
+        }
 
         if (useDefaultFont) {
             _p5.textFont('Georgia');

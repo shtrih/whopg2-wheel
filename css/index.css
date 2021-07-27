@@ -2,11 +2,11 @@
 
 @font-face {
 	font-family: "Oswald-Regular";
-	src: url('Oswald-Regular.ttf');
+	src: url('../fonts/Oswald-Regular.ttf');
 }
 @font-face {
 	font-family: "Oswald-Light";
-	src: url('Oswald-Light.ttf');
+	src: url('../fonts/Oswald-Light.ttf');
 }
 #canvas2 {
 	position: absolute;
@@ -403,7 +403,7 @@ button:disabled {
 }
 #item-image .arc {
 	position: absolute;
-	background: url(images/arc.png) no-repeat 60px center;
+	background: url(../images/arc.png) no-repeat 60px center;
 	height: 100%;
 	width: 200px;
 }

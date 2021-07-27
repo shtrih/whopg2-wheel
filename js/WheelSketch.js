@@ -61,7 +61,7 @@ function WheelSketch(_p5) {
     };
 
     _p5.preload = () => {
-        fontRegular = _p5.loadFont('./Oswald-Regular.ttf');
+        fontRegular = _p5.loadFont('./fonts/Oswald-Regular.ttf');
         // fontRegular = _p5.loadFont('./fonts/Clickuper/Clickuper.ttf');
     };
 

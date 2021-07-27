@@ -68,14 +68,22 @@ label:hover {
 #video.play {
 	animation: play-video 22s;
 }
-#video {
+#filter-shadow {
 	position: absolute;
-	left: 40%;
+	width: 100%;
+	height: 100%;
+	filter: drop-shadow(0px 0px 10px rgba(20, 30, 48, 1));
 	opacity: 0;
 	visibility: hidden;
 }
+#video {
+	top: -50px;
+	position: absolute;
+	left: 35%;
+	clip-path: ellipse(50% 50% at 50% 50%);
+}
 #video video {
-	height: 500px;
+	height: 600px;
 	object-fit: cover;
 	/*display: none;*/
 }
@@ -84,7 +92,7 @@ label:hover {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: radial-gradient(closest-side, transparent 70%, #141E30);
+	background: radial-gradient(closest-side, transparent 60%, #141E30);
 }
 #volume-control {
 	/*position: absolute;*/
@@ -175,6 +183,7 @@ button:disabled {
 	opacity: .8;
 	transform: scale(1);
 	margin: auto;
+	/*max-width: 100%;*/
 }
 .image-grid-item-container {
 	list-style: none;
@@ -182,7 +191,7 @@ button:disabled {
 	min-width: 60px;
 	max-height: 120px;
 	margin: 40px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	display: flex;
 }
 .image-grid-view {
@@ -313,7 +322,11 @@ button:disabled {
 .dialog .presets {
 	text-align: left;
 }
-.dialog .presets label:first-letter {
+
+.dialog .presets span:nth-child(1) > label {
+	display: inline-block; /* для ↓↓↓ */
+}
+.dialog .presets span:nth-child(1) > label::first-letter {
 	text-transform: uppercase;
 }
 .dialog .presets [type="radio"] {
@@ -386,7 +399,7 @@ button:disabled {
 	display: flex;
 	align-items: center;
 	user-select: none;
-	left: -60px;
+	left: -50px;
 }
 #item-image .arc {
 	position: absolute;

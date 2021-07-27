@@ -97,7 +97,7 @@ function WheelSketch(_p5) {
         // _p5.frameRate(30);
 
         const background = document.querySelector('.image-grid'),
-            videoContainer = document.getElementById('video'),
+            videoContainer = document.getElementById('filter-shadow'),
             button = _p5.createButton('Крутить')
         ;
 

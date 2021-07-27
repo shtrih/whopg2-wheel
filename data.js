@@ -1,7 +1,3 @@
-function array_unique(value, index, self) {
-    return self.indexOf(value) === index;
-}
-
 const subSets = {
     items: {
         ['Уровень 1']: {

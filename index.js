@@ -52,7 +52,6 @@ const editDialog = document.getElementById('dialog-edit'),
             if (!editedDataSets[currentDataSet]) {
                 editPresets.innerHTML = '';
                 editPresets.append(...presetManager.getNodes(currentDataSet));
-                presetManager.applyDefaults(currentDataSet);
             }
 
             p5Instance.setData(editedDataToArray());
@@ -144,14 +143,6 @@ const p5image = new p5((p) => {
         ;
 
         animationsMap.set(`${startNum},${endNum},${durationMs}`, engine);
-    }
-
-    function easeInOutSine(x) {
-        return -(Math.cos(Math.PI * x) - 1) / 2;
-    }
-
-    function easeOutExpo(x) {
-        return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
     }
 
     p.preload = () => {

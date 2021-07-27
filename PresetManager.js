@@ -40,6 +40,8 @@ class PresetManager {
             });
 
             this._nodes[dataSetKey].shift();
+
+            this.applyDefaults(dataSetKey);
         }
 
         return this._nodes[dataSetKey];
@@ -61,7 +63,7 @@ class PresetManager {
         this._activePreset = preset
     }
 
-    renderOptions = function (dataObject) {
+    renderOptions(dataObject) {
         this._activePreset.renderOptions(dataObject);
     }
 }

@@ -2,7 +2,9 @@
 let currentDataSet = 'inventory',
     editedDataSets = {};
 
-const editDialog = document.getElementById('dialog-edit'),
+const
+    isDebug = new URLSearchParams(document.location.search).get('debug'),
+    editDialog = document.getElementById('dialog-edit'),
     editButton = document.getElementById('btn-edit'),
     editConfirmButton = editDialog.getElementsByClassName('apply')[0],
     editOptions = editDialog.getElementsByClassName('options')[0],
@@ -39,14 +41,14 @@ const editDialog = document.getElementById('dialog-edit'),
         currentDataSet = this.value;
 
         if (currentDataSet === 'custom') {
-            p5Instance.mouseDragEnable(false);
+            p5Wheel.mouseDragEnable(false);
             customDialog.style.display = 'block';
 
             return;
         }
 
         customDialog.style.display = 'none';
-        p5Instance.mouseDragEnable();
+        p5Wheel.mouseDragEnable();
 
         if (presetManager.hasPreset(currentDataSet)) {
             if (!editedDataSets[currentDataSet]) {
@@ -54,7 +56,7 @@ const editDialog = document.getElementById('dialog-edit'),
                 editPresets.append(...presetManager.getNodes(currentDataSet));
             }
 
-            p5Instance.setData(editedDataToArray());
+            p5Wheel.setData(editedDataToArray());
 
             this.parentElement.append(editButton);
             editButton.className = '';
@@ -64,7 +66,7 @@ const editDialog = document.getElementById('dialog-edit'),
             }
         }
         else {
-            p5Instance.setData(dataSets[currentDataSet]);
+            p5Wheel.setData(dataSets[currentDataSet]);
             editButton.className = 'hide';
         }
     }
@@ -72,14 +74,14 @@ const editDialog = document.getElementById('dialog-edit'),
 
 editButton.addEventListener('click', function () {
     if (currentDataSet === 'custom') {
-        p5Instance.mouseDragEnable(false);
+        p5Wheel.mouseDragEnable(false);
         customDialog.style.display = 'block';
 
         return;
     }
 
     editDialog.style.display = 'block';
-    p5Instance.mouseDragEnable(false);
+    p5Wheel.mouseDragEnable(false);
 
     editPresets.innerHTML = '';
     editPresets.append(...presetManager.getNodes(currentDataSet));
@@ -87,137 +89,64 @@ editButton.addEventListener('click', function () {
 });
 editConfirmButton.addEventListener('click', function () {
     editDialog.style.display = 'none';
-    p5Instance.mouseDragEnable();
+    p5Wheel.mouseDragEnable();
 
-    p5Instance.setData(editedDataToArray());
+    p5Wheel.setData(editedDataToArray());
 });
 
-const p5Instance = new p5(WheelSketch);
+const p5Wheel = new p5(WheelSketch);
 
 const DMCAPlaylistSwitcher = new CheckboxStateable('with-dmca', 'video-with-dmca-protection', CheckboxStateable.MODE_MERGE);
 DMCAPlaylistSwitcher
     .setValues(videosProtected, videosFree)
     .onSwitch((value) => {
-        p5Instance.setVideos(value);
+        p5Wheel.setVideos(value);
     })
 ;
 
-p5Instance.onAfterSetup = function () {
-    p5Instance.setVideos(DMCAPlaylistSwitcher.value);
+p5Wheel.onAfterSetup = function () {
+    p5Wheel.setVideos(DMCAPlaylistSwitcher.value);
 };
 
 const image = document.querySelector('#item-image img');
 let currentUrl = window.location.href;
 currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
 
-const p5image = new p5((p) => {
-    let image,
-        isAnimated = false,
-        animationsMap = new Map,
-        animationDraw = (animation) => {
-            animation();
-        }
-    ;
+const p5ImagePlayer = new p5(GifPlayer);
 
-    function createAnimation(tickHook, startNum, endNum, durationMs, callback, easingEq) {
-        easingEq = easingEq || easeInOutSine;
-        const changeInNum = endNum - startNum,
-            startTime = Date.now(),
-            engine = function () {
-                const now = Date.now(),
-                    timeSpent = now - startTime,
-                    timeNorm = timeSpent / durationMs,
-                    completionNorm = easingEq(timeNorm),
-                    newNum = startNum + completionNorm * changeInNum;
-
-                if (timeSpent > durationMs) {
-                    animationsMap.delete(`${startNum},${endNum},${durationMs}`);
-                    if (callback) {
-                        callback();
-                    }
-                }
-                else {
-                    tickHook(newNum);
-                }
-            }
-        ;
-
-        animationsMap.set(`${startNum},${endNum},${durationMs}`, engine);
-    }
-
-    p.preload = () => {
-        image = p.loadImage('images/frames/ppOverheat.gif');
-    };
-    p.setup = () => {
-        const canvas = p.createCanvas(112, 112);
-        canvas.parent('canvas2');
-    };
-    p.draw = () => {
-        p.clear();
-
-        if (isAnimated) {
-            animationsMap.forEach(animationDraw);
-            p.image(image, 0, 0);
-        }
-    };
-
-    p.onStartWheel = (durationSec) => {
-        isAnimated = true;
-        let drawCallback = (v) => {
-            image.delay(v);
-        };
-
-        createAnimation(drawCallback, 200, 20, durationSec * 1000 / 2, () => {
-            createAnimation(drawCallback, 20, 200, durationSec * 1000 / 2, () => {}, easeInOutSine)
-        }, easeOutExpo);
-    };
-    p.setIsAnimated = (state) => {
-        isAnimated = state;
-    };
-    p.moveAnimation = (delta) => {
-        if (delta > 0) {
-            let delay = Math.ceil(p.map(delta, 0, 10, 200, 4, true));
-            image.delay(delay);
-            return;
-        }
-
-        image.delay(10000);
-    };
-});
-
-p5Instance.onStartWheel = (durationSec) => {
+p5Wheel.onStartWheel = (durationSec) => {
     if (currentDataSet === 'meetings') {
-        p5image.onStartWheel(durationSec);
+        p5ImagePlayer.onStartWheel(durationSec);
     }
 };
-p5Instance.onStopWheel = () => {
+p5Wheel.onStopWheel = () => {
     // p5image.startAnimation(false);
 };
 
 let deltas = [];
 setInterval(() => {
     if (currentDataSet === 'meetings') {
-        p5image.setIsAnimated(true);
+        p5ImagePlayer.setIsAnimated(true);
 
         let max = deltas.reduce(function(a, b) {
             return Math.max(a, b);
         }, 0);
         deltas = [];
 
-        p5image.moveAnimation(max);
+        p5ImagePlayer.moveAnimation(max);
     }
     else {
-        p5image.setIsAnimated(false);
+        p5ImagePlayer.setIsAnimated(false);
     }
-}, 500);
+}, 300);
 
-p5Instance.onMoveWheel = (delta) => {
+p5Wheel.onMoveWheel = (delta) => {
     if (currentDataSet === 'meetings') {
         deltas.push(Math.abs(delta));
     }
 };
 
-p5Instance.onSelectItem = function(data, selectedKey) {
+p5Wheel.onSelectItem = function(data, selectedKey) {
     let url = currentUrl + '/images/000.png';
     // if (dataSets[currentDataSet]) {
     //     const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
@@ -267,8 +196,8 @@ const customDialog = document.getElementById('custom-list'),
     customSubmitHandler = function () {
         customDialog.style.display = 'none';
 
-        p5Instance.setData(customTextarea.value.split('\n'));
-        p5Instance.mouseDragEnable();
+        p5Wheel.setData(customTextarea.value.split('\n'));
+        p5Wheel.mouseDragEnable();
 
         saveCustomData(customTextarea.value);
     }

@@ -9,8 +9,7 @@ function WheelSketch(_p5) {
         startAnimationHandler = function (startAnimation) {
             startAnimation();
         },
-        fpsCounter = new FPSCounter(700, 450, 100, 50, _p5),
-        isDebug = new URLSearchParams(document.location.search).get('debug')
+        fpsCounter = new FPSCounter(700, 450, 100, 50, _p5)
     ;
     let data = [],
         videosList = [
@@ -169,7 +168,7 @@ function WheelSketch(_p5) {
     };
 
     _p5.mouseDragged = (event) => {
-        if (_p5.mouseX > _p5.width || _p5.mouseY > _p5.height) {
+        if (_p5.mouseX > _p5.width || _p5.mouseX < 0 || _p5.mouseY > _p5.height || _p5.mouseY < 0) {
             return;
         }
         if (isCounterAnimation) {

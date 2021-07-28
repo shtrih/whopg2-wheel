@@ -1,11 +1,11 @@
 const videosProtected = [
     ['videos/JOJO\'S BIZARRE MAKEUP TUTORIAL.mp4', 6],
     ['videos/All Star but they don\'t stop coming pitch corrected.mp4', 20],
-    () => p5Instance.random([
+    () => p5Wheel.random([
         ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 54],
         ['videos/Pinoki - Pingana (Havana by Camila Cabello ft. Young Thug Remix).mp4', 108],
     ]),
-    () => ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Instance.random([75, 136])],
+    () => ['videos/Noisestorm - Crab Rave (Official Music Video).mp4', p5Wheel.random([75, 136])],
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 46, 25],
     ['videos/HOOD NARUTO  pt.4 (full video) naruto vs pain.mp4', 23, 32],
@@ -31,11 +31,11 @@ const videosProtected = [
 
     ['videos/streamers/Папич-марш  прощание славянки .9мая.mp4', 7],
     ['videos/streamers/Мэддисон - Shooting Stars.mp4', 13],
-    () => p5Instance.random([
+    () => p5Wheel.random([
         ['videos/streamers/Мэддисон дрифтит под Фонк.mp4', 0, 25],
         ['videos/учит крутить рулём под phonk.mp4', 5],
     ]),
-    () => p5Instance.random([
+    () => p5Wheel.random([
         'videos/streamers/namvseyasno-shrekophone.mp4',
         ['videos/[SFM] Shrekophone.mp4', 15],
     ]),

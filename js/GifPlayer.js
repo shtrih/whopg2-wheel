@@ -13,6 +13,7 @@ function GifPlayer(p) {
         ]
     ;
     let image,
+        imageLoading,
         isAnimated = false,
         animationsMap = new Map,
         animationDraw = (animation) => {
@@ -51,6 +52,7 @@ function GifPlayer(p) {
     }
 
     p.preload = () => {
+        imageLoading = p.loadImage('images/frames/' + gifList[0] + '.gif');
         p.randomizeImage();
     };
     p.setup = () => {
@@ -126,9 +128,11 @@ function GifPlayer(p) {
         image.delay(delay);
     };
     p.randomizeImage = () => {
+        image = imageLoading;
+        image.delay(delay);
+
         p.loadImage('images/frames/' + gifList[imageIndex] + '.gif', img => {
-            image = img;
-            image.delay(delay);
+            imageLoading = img;
         });
 
         imageIndex++;

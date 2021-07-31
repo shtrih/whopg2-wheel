@@ -146,7 +146,7 @@ class PresetItems extends Preset {
     }
 
     getDOMNode(dataSetKey, index) {
-        if (!this._node) {
+        // if (!this._node) {
             const
                 container = document.createElement('span'),
                 label = document.createElement('label'),
@@ -163,7 +163,7 @@ class PresetItems extends Preset {
             container.append(input, label);
 
             this._node = container;
-        }
+        // }
 
         return this._node;
     }

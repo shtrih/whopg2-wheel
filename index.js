@@ -74,12 +74,12 @@ const
                 p5Wheel.mouseDragEnable(false);
             }
 
-            if (itemsEditedDataSet) {
-                editedDataSets[currentDataSet] = itemsEditedDataSet;
-            }
-            else {
+            // if (itemsEditedDataSet) {
+            //     editedDataSets[currentDataSet] = itemsEditedDataSet;
+            // }
+            // else {
                 resetEditedDataSet(false);
-            }
+            // }
 
             editHeader.textContent = this.nextElementSibling.innerText;
             editPresets.innerHTML = '';
@@ -142,10 +142,10 @@ editConfirmButton.addEventListener('click', function () {
     p5Wheel.mouseDragEnable();
 
     p5Wheel.setData(editedDataToArray());
-
-    if (currentDataSet === 'items') {
-        itemsEditedDataSet = editedDataSets[currentDataSet];
-    }
+    //
+    // if (currentDataSet === 'items') {
+    //     itemsEditedDataSet = editedDataSets[currentDataSet];
+    // }
 });
 
 const p5Wheel = new p5(WheelSketch);

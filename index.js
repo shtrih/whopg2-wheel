@@ -171,7 +171,7 @@ currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
 const p5ImagePlayer = new p5(GifPlayer);
 
 p5Wheel.onStartWheel = (durationSec) => {
-    if (currentDataSet === 'meetings') {
+    if (currentDataSet === 'meetings' || currentDataSet === 'custom') {
         p5ImagePlayer.onStartWheel(durationSec);
     }
 };
@@ -181,7 +181,7 @@ p5Wheel.onStopWheel = () => {
 
 let deltas = [];
 setInterval(() => {
-    if (currentDataSet === 'meetings') {
+    if (currentDataSet === 'meetings' || currentDataSet === 'custom') {
         p5ImagePlayer.setIsAnimated(true);
 
         let max = deltas.reduce(function(a, b) {
@@ -197,7 +197,7 @@ setInterval(() => {
 }, 300);
 
 p5Wheel.onMoveWheel = (delta) => {
-    if (currentDataSet === 'meetings') {
+    if (currentDataSet === 'meetings' || currentDataSet === 'custom') {
         deltas.push(Math.abs(delta));
     }
 };

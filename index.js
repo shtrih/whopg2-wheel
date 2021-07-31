@@ -1,7 +1,8 @@
 
 let currentDataSet = 'inventory',
-    editedDataSets = {};
-
+    editedDataSets = {},
+    itemsEditedDataSet = null
+;
 const
     isDebug = new URLSearchParams(document.location.search).get('debug'),
     editDialog = document.getElementById('dialog-edit'),
@@ -9,7 +10,28 @@ const
     editConfirmButton = editDialog.getElementsByClassName('apply')[0],
     editOptions = editDialog.getElementsByClassName('options')[0],
     editPresets = editDialog.getElementsByClassName('presets')[0],
+    editHeader = editDialog.getElementsByClassName('header')[0],
     presetManager = new PresetManager,
+    itemsPresets = [
+        new PresetGroup('Уровень 1'),
+        new PresetItems("Голова", subSets.items["Уровень 1"]["Голова"]),
+        new PresetItems("Тело", subSets.items["Уровень 1"]["Тело"]),
+        new PresetItems("Оружие", subSets.items["Уровень 1"]["Оружие"]),
+        new PresetItems("Ноги", subSets.items["Уровень 1"]["Ноги"]),
+        new PresetItems("Аксессуар", subSets.items["Уровень 1"]["Аксессуар"]),
+        new PresetGroup('Уровень 2'),
+        new PresetItems("Голова", subSets.items["Уровень 2"]["Голова"]),
+        new PresetItems("Тело", subSets.items["Уровень 2"]["Тело"]),
+        new PresetItems("Оружие", subSets.items["Уровень 2"]["Оружие"]),
+        new PresetItems("Ноги", subSets.items["Уровень 2"]["Ноги"]),
+        new PresetItems("Аксессуар", subSets.items["Уровень 2"]["Аксессуар"]),
+        new PresetGroup('Уровень 3'),
+        new PresetItems("Голова", subSets.items["Уровень 3"]["Голова"]),
+        new PresetItems("Тело", subSets.items["Уровень 3"]["Тело"]),
+        new PresetItems("Оружие", subSets.items["Уровень 3"]["Оружие"]),
+        new PresetItems("Ноги", subSets.items["Уровень 3"]["Ноги"]),
+        new PresetItems("Аксессуар", subSets.items["Уровень 3"]["Аксессуар"]),
+    ],
     optionClick = function (option, checked) {
         option = decodeURIComponent(option);
         editedDataSets[currentDataSet][option] = checked;
@@ -46,6 +68,32 @@ const
 
             return;
         }
+        else if (currentDataSet === 'items') {
+            if (this.getAttribute('data-show-edit-dialog')) {
+                editDialog.style.display = 'block';
+                p5Wheel.mouseDragEnable(false);
+            }
+
+            if (itemsEditedDataSet) {
+                editedDataSets[currentDataSet] = itemsEditedDataSet;
+            }
+            else {
+                resetEditedDataSet(false);
+            }
+
+            editHeader.textContent = this.nextElementSibling.innerText;
+            editPresets.innerHTML = '';
+            editOptions.innerHTML = '';
+            itemsPresets.forEach((preset, i) => {
+                editPresets.append(preset.getDOMNode(currentDataSet, i));
+                // preset.renderOptions(editedDataSets[currentDataSet], false);
+            });
+
+            // this.parentElement.append(editButton);
+            // editButton.className = '';
+
+            return;
+        }
 
         customDialog.style.display = 'none';
         p5Wheel.mouseDragEnable();
@@ -60,6 +108,8 @@ const
 
             this.parentElement.append(editButton);
             editButton.className = '';
+
+            editHeader.textContent = this.nextElementSibling.innerText;
 
             if (this.getAttribute('data-show-edit-dialog')) {
                 editButton.dispatchEvent(new Event('click'));
@@ -92,6 +142,10 @@ editConfirmButton.addEventListener('click', function () {
     p5Wheel.mouseDragEnable();
 
     p5Wheel.setData(editedDataToArray());
+
+    if (currentDataSet === 'items') {
+        itemsEditedDataSet = editedDataSets[currentDataSet];
+    }
 });
 
 const p5Wheel = new p5(WheelSketch);

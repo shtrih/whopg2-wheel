@@ -106,13 +106,14 @@ const
 
             p5Wheel.setData(editedDataToArray());
 
-            this.parentElement.append(editButton);
-            editButton.className = '';
-
             editHeader.textContent = this.nextElementSibling.innerText;
 
             if (this.getAttribute('data-show-edit-dialog')) {
                 editButton.dispatchEvent(new Event('click'));
+            }
+            else {
+                this.parentElement.append(editButton);
+                editButton.className = '';
             }
         }
         else {

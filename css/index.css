@@ -184,7 +184,7 @@ button:disabled {
 	opacity: .8;
 	transform: scale(1);
 	margin: auto;
-	/*max-width: 100%;*/
+	max-width: 100%;
 }
 .image-grid-item-container {
 	list-style: none;
@@ -288,7 +288,6 @@ button:disabled {
 .dialog {
 	position: absolute;
 	left: 50%;
-	top: 50%;
 	margin: -25%;
 	min-width: 250px;
 	background-color: #141E30;

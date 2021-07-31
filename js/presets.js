@@ -1,7 +1,7 @@
 
 class PresetAll extends Preset {
-    constructor(isDefault) {
-        super('выбрать всё', [], false, isDefault);
+    constructor(isDefault, title = 'выбрать всё') {
+        super(title, [], false, isDefault);
     }
 }
 

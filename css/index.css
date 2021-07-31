@@ -316,8 +316,9 @@ button:disabled {
 }
 .dialog hr {
 	width: 50%;
-	border-style: dashed;
+	border-style: solid;
 	border-width: 1px 0 0 0;
+	border-color: #2e597d;
 }
 .dialog .header {
 	margin-bottom: 0.5em;
@@ -325,6 +326,7 @@ button:disabled {
 }
 .dialog .presets {
 	text-align: left;
+	margin-bottom: 0.5em;
 }
 
 .dialog .presets span:nth-child(1) > label {
@@ -335,6 +337,9 @@ button:disabled {
 }
 .dialog .presets [type="radio"] {
 	display: none;
+}
+.dialog .presets [type="checkbox"] {
+	margin-left: 12px;
 }
 .dialog .presets label,
 .dialog .presets a {

@@ -108,9 +108,8 @@ class PresetGroup extends Preset {
 
     getDOMNode(dataSetKey, index) {
         if (!this._node) {
-            const
-                container = document.createElement('div')
-            ;
+            const container = document.createElement('div');
+            container.setAttribute('style', 'margin-top: 0.6em');
             container.appendChild(document.createTextNode(this._title));
 
             this._node = container;

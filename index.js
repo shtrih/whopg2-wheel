@@ -65,6 +65,7 @@ const
         if (currentDataSet === 'custom') {
             p5Wheel.mouseDragEnable(false);
             customDialog.style.display = 'block';
+            editButton.className = 'hide';
 
             return;
         }

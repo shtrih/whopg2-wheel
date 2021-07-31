@@ -408,18 +408,18 @@ button:disabled {
 	display: flex;
 	align-items: center;
 	user-select: none;
-	left: -50px;
+	left: -60px;
 }
 #item-image .arc {
 	position: absolute;
-	background: url(../images/arc.png) no-repeat 60px center;
+	background: url(../images/arc.png) no-repeat 70px center;
 	height: 100%;
 	width: 200px;
 }
 #item-image img {
 	width: 100px;
-	height: 100px;
-	filter: drop-shadow(0 0 2px #aaa);
+	/*height: 100px;*/
+	filter: drop-shadow(0 0 2px #000);
 }
 #btn-edit.hide {
 	display: none;

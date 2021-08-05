@@ -3,13 +3,11 @@ function GifPlayer(p) {
         width = 112,
         height = 112,
         gifList = [
-            'ppOverheat',
-            '3x',
-            '3x_1',
-            '3x_2',
-            '3x_3',
-            '3x_4',
-            '3x_5',
+            {name: 'ppOverheat', min: 15, max: 200},
+            {name: '3x', min: 35, max: 200},
+            {name: '3x_1', min: 50, max: 200},
+            {name: '3x_2', min: 15, max: 200},
+            {name: '3x_3', min: 15, max: 200},
         ]
     ;
     let image,
@@ -22,8 +20,6 @@ function GifPlayer(p) {
         imageIndex = 0,
         delay
     ;
-
-    array_shuffle(gifList);
 
     function createAnimation(tickHook, startNum, endNum, durationMs, callback, easingEq) {
         easingEq = easingEq || easeInOutSine;
@@ -52,7 +48,8 @@ function GifPlayer(p) {
     }
 
     p.preload = () => {
-        imageLoading = p.loadImage('images/frames/' + gifList[0] + '.gif');
+        array_shuffle(gifList);
+        imageLoading = p.loadImage('images/frames/' + gifList[0].name + '.gif');
         p.randomizeImage();
     };
     p.setup = () => {
@@ -108,9 +105,12 @@ function GifPlayer(p) {
             delay = v;
             image.delay(delay);
         };
+        const minDelay = gifList[imageIndex].min,
+            maxDelay = gifList[imageIndex].max
+        ;
 
-        createAnimation(drawCallback, 200, 15, durationSec * 1000 / 2, () => {
-            createAnimation(drawCallback, 15, 200, durationSec * 1000 / 2, () => {}, easeInOutSine)
+        createAnimation(drawCallback, maxDelay, minDelay, durationSec * 1000 / 2, () => {
+            createAnimation(drawCallback, minDelay, maxDelay, durationSec * 1000 / 2, () => {}, easeInCirc)
         }, easeOutExpo);
     };
     p.setIsAnimated = (state) => {
@@ -131,13 +131,14 @@ function GifPlayer(p) {
         image = imageLoading;
         image.delay(delay);
 
-        p.loadImage('images/frames/' + gifList[imageIndex] + '.gif', img => {
+        p.loadImage('images/frames/' + gifList[imageIndex].name + '.gif', img => {
             imageLoading = img;
         });
 
         imageIndex++;
         if (imageIndex >= gifList.length) {
             imageIndex = 0;
+            array_shuffle(gifList);
         }
     };
 }

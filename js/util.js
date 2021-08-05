@@ -71,6 +71,26 @@ function easeInOutSine(x) {
     return -(Math.cos(Math.PI * x) - 1) / 2;
 }
 
+/**
+ * @see https://easings.net/#easeInCirc
+ * @param x
+ * @return {number}
+ */
+function easeInCirc(x) {
+    return 1 - Math.sqrt(1 - Math.pow(x, 2));
+}
+
+/**
+ * @see https://easings.net/#easeInOutCirc
+ * @param x
+ * @return {number}
+ */
+function easeInOutCirc(x) {
+    return x < 0.5
+           ? (1 - Math.sqrt(1 - Math.pow(2 * x, 2))) / 2
+           : (Math.sqrt(1 - Math.pow(-2 * x + 2, 2)) + 1) / 2;
+}
+
 function array_shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));

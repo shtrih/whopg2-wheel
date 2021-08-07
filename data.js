@@ -563,10 +563,11 @@ const dataSets = {
         {title: 'Ребро', image: '/coins/coin-gurt.png'},
     ],
     streamers: [
-        {title: '???', image: '/items/012.png'},
-        {title: '???', image: '/items/050.png'},
-        {title: '???', image: '/items/023.png'},
-        {title: '???', image: '/items/027.png'},
-        {title: '???', image: '/items/028.png'},
+        {title: 'liz0N', image: '/streamers/liz0n.png'},
+        {title: 'NAMVSEYASNO', image: '/streamers/NAMVSEYASNO.png'},
+        {title: 'praden', image: '/streamers/praden.jpg'},
+        {title: 'RoadHouse', image: '/streamers/roadhouse.png'},
+        {title: 'SgtGrafoyni', image: '/streamers/sgtgrafoyni.jpeg'},
+        {title: 'usachman', image: '/streamers/usachman.png'},
     ],
 };

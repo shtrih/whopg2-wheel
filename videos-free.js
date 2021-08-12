@@ -1,3 +1,21 @@
+/**
+ * Дефолтное время кручения 22 сек.
+ *
+ * Длина кручения 22 сек:
+ * 'video.webm'
+ *
+ * Длина кручения 22 сек, видео начнётся с 4 секунды:
+ * ['video.webm', 4]
+ *
+ * Длина кручения 30 сек, видео начнётся с 4 секунды:
+ * ['video.webm', 4, 30]
+ *
+ * Выберется случайное видео из списка, рандомится только при перезапуске всего списка видосов:
+ * () => p5Wheel.random([
+ *    ['video.webm', 4, 30],
+ *    ['video.webm', 45],
+ * ]),
+ */
 const videosFree = [
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 46, 25],
@@ -7,7 +25,7 @@ const videosFree = [
     ['videos/dj-eban2.mp4', 0, 30],
     () => p5Wheel.random([
         ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
-        ['videos/Пузантос - Бумаги [Morrowind].mp4', 75, 105],
+        ['videos/Пузантос - Бумаги [Morrowind].mp4', 75, 30],
     ]),
     'videos/06.mp4',
     'videos/16.mp4',

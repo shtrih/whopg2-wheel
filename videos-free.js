@@ -5,7 +5,10 @@ const videosFree = [
     'videos/[Re-upload] [1080p] HONK HONK.mp4',
     'videos/U GOT Яйца.mp4',
     ['videos/dj-eban2.mp4', 0, 30],
-    ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
+    () => p5Wheel.random([
+        ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
+        ['videos/Пузантос - Бумаги [Morrowind].mp4', 75, 105],
+    ]),
     'videos/06.mp4',
     'videos/16.mp4',
 
@@ -14,6 +17,10 @@ const videosFree = [
     ['videos/streamers/grafon.mp4', 0, 29],
     ['videos/streamers/mel.mp4', 0, 20],
     ['videos/streamers/nam.mp4', 0, 29],
+    ['videos/streamers/Liz0N.mp4', 0, 15],
+    ['videos/streamers/Road.mp4', 0, 28],
+    ['videos/streamers/usach01.mp4', 0, 31],
+    ['videos/streamers/usach02.mp4', 0, 30],
 
     ['videos/A4.mp4', 0, 28],
     ['videos/azamat.mp4', 0, 27],
@@ -40,6 +47,6 @@ const videosFree = [
     ['videos/Бегу по качалке, в голове. (♂Right version).mp4', 0, 16],
     ['videos/Квас Закамский это хит.mp4', 0, 15],
     ['videos/Моршу RTX - Ремикс_Morshu Remix.mp4', 0, 36],
-    ['videos/ОЙ - ОЙ НРАВИТСЯ.mp4', 0, 43],
+    ['videos/ОЙ - ОЙ НРАВИТСЯ.mp4', 0, 30],
     ['videos/цiногриз!.mp4', 0, 17],
 ];

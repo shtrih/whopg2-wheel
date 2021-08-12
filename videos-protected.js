@@ -21,4 +21,6 @@ const videosProtected = [
     ['videos/dmca/rikroll.mp4', 0, 26],
     ['videos/dmca/The less I know the better & Sexy back (Meme edit).mp4', 0, 34],
     ['videos/dmca/Кит ты маму мав (Still D.R.E.).mp4', 0, 41],
+    ['videos/streamers/namvseyasno-shrekophone.mp4', 0, 24],
+    ['videos/streamers/Road2.mp4', 0, 32],
 ];

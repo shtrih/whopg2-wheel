@@ -2,18 +2,18 @@ class PresetManager {
     constructor() {
         this._presets = {
             implants: [
-                new PresetImplantL1(),
+                new PresetImplantL1(true),
                 new PresetImplantL2(),
                 new PresetImplantL3(),
-                new PresetAll(true),
+                new PresetAll(),
                 new PresetNothing(),
             ],
             meetings: [
                 new PresetMeetEZ(),
                 new PresetMeetMedium(),
-                new PresetMeetSemiHard(),
+                new PresetMeetSemiHard(true),
                 new PresetMeetHard(),
-                new PresetAll(true),
+                new PresetAll(),
                 new PresetNothing(),
             ],
             injuries: [

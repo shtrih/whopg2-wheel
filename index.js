@@ -175,8 +175,32 @@ p5Wheel.onStartWheel = (durationSec) => {
         p5ImagePlayer.onStartWheel(durationSec);
     }
 };
+
+let selectedText = '', lastSelectedText = '';
+const
+    lastWheelTextEl = document.getElementById('last-selected-text'),
+    onStopLastTextHandler = () => {
+        lastSelectedText = selectedText;
+        lastWheelTextEl.innerHTML = `Выпало в прошлый раз: «${lastSelectedText}»`
+    },
+    lastWheelBtnEl = document.getElementById('copy-last-selected'),
+    lastWheelLinkHandler = function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        navigator.clipboard.writeText(lastSelectedText.replace(/["',:]/g, ''))
+        /*.then(() => {
+            // clipboard successfully set
+        }, () => {
+            // clipboard write failed
+            console.error("Failed to set clipboard: ", selectedText)
+        });*/
+    }
+;
+lastWheelBtnEl.addEventListener('click', lastWheelLinkHandler);
+
 p5Wheel.onStopWheel = () => {
-    // p5image.startAnimation(false);
+    onStopLastTextHandler();
 };
 
 let deltas = [];
@@ -203,6 +227,8 @@ p5Wheel.onMoveWheel = (delta) => {
 };
 
 p5Wheel.onSelectItem = function(data, selectedKey) {
+    selectedText = data[selectedKey] ? data[selectedKey].title || data[selectedKey] : '';
+
     let url = currentUrl + '/images/000.png';
     // if (dataSets[currentDataSet]) {
     //     const imageIndex = dataSets[currentDataSet].indexOf(data[selectedKey]);
@@ -243,6 +269,7 @@ const customDialog = document.getElementById('custom-list'),
         const customRadio = document.querySelector('[name="list"][value="custom"]');
         customTextarea.value = customData;
 
+        customRadio.dispatchEvent(new Event('click'));
         customButton.dispatchEvent(new Event('click'));
         customRadio.setAttribute('checked', true);
     },

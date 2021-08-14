@@ -135,10 +135,11 @@ function WheelSketch(_p5) {
                         // videoContainer.classList = '';
                         background.classList = 'image-grid';
 
-                        _p5.onStopWheel();
                         animCounterStop();
+                        alignToRow(() => {
+                            _p5.onStopWheel();
+                        });
                         video.pause();
-                        alignToRow();
                     },
                     easeInOutSine
                 );
@@ -251,7 +252,7 @@ function WheelSketch(_p5) {
                     _p5.fill(212, 160, 0);
                 }
 
-                _p5.noStroke();
+                // _p5.noStroke();
 
                 if (key !== selectedKey) {
                     selectedKey = key;

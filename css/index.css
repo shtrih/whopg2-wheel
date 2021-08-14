@@ -276,11 +276,14 @@ button:disabled {
 }
 .dialog :checked + label,
 #wheel-data-sets [type="radio"]:checked + label {
-	color: #5fa6ee;
+	color: hsl(210, 81%, 75%);
 }
 .dialog :not(:checked) + label:hover,
-#wheel-data-sets [type="radio"]:not(:checked) + label:hover {
-	color: #a0d7ff;
+#wheel-data-sets [type="radio"]:not(:checked) + label:hover,
+.dialog :checked + label:hover,
+#wheel-data-sets [type="radio"]:checked + label:hover {
+	/*color: #a0d7ff;*/
+	filter: brightness(1.2);
 }
 #wheel-data-sets #scrooge + label {
 	margin-right: 0;
@@ -340,10 +343,19 @@ button:disabled {
 .dialog .presets [type="checkbox"] {
 	margin-left: 12px;
 }
+.dialog .presets label {
+	display: inline-block;
+	line-height: 1em;
+	padding-bottom: 3px;
+}
 .dialog .presets label,
 .dialog .presets a {
 	text-decoration: none;
 	border-bottom: 1px dotted;
+}
+.dialog .presets :checked + label {
+	border-bottom: 2px solid;
+	filter: brightness(1.15);
 }
 .dialog .options::-webkit-scrollbar-track,
 .dialog textarea::-webkit-scrollbar-track
@@ -422,4 +434,35 @@ button:disabled {
 }
 #btn-edit.hide {
 	display: none;
+}
+
+input[name="implants"] + label, input[name="meetings"] + label {
+	color: hsl(0, 0%, 67%);
+}
+#meetings0 + label {
+	color: hsl(156, 84%, 78%);
+}
+#meetings1 + label {
+	color: hsl(44, 96%, 80%);
+}
+#meetings2 + label {
+	color: hsl(29, 95%, 70%);
+}
+#meetings3 + label {
+	color: hsl(0, 99%, 74%);
+}
+
+#implants0 + label,
+.presets > div:nth-of-type(1) {
+	color: hsl(210, 100%, 77%);
+}
+
+#implants1 + label,
+.presets > div:nth-of-type(2) {
+	color: hsl(276, 84%, 77%);
+}
+
+#implants2 + label,
+.presets > div:nth-of-type(3) {
+	color: hsl(30, 100%, 70%);
 }

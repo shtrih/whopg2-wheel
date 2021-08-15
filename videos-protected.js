@@ -23,4 +23,9 @@ const videosProtected = [
     ['videos/dmca/Кит ты маму мав (Still D.R.E.).mp4', 0, 41],
     ['videos/streamers/namvseyasno-shrekophone.mp4', 0, 24],
     ['videos/streamers/Road2.mp4', 0, 32],
+    ['videos/streamers/stvol.mp4', 0, 24],
+    ['videos/streamers/Peter Parker edit Lordly.mp4', 0, 20],
+    ['videos/streamers/flexair5.mp4', 0, 26],
+    ['videos/streamers/cyberslav.mp4', 0, 30],
+    ['videos/streamers/anime01.mp4', 0, 27],
 ];

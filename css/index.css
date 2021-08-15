@@ -478,6 +478,6 @@ div:hover > #copy-last-selected {
 	visibility: visible;
 	cursor: pointer;
 }
-div:active > #copy-last-selected {
+div > #copy-last-selected:active {
 	margin-top: 3px;
 }

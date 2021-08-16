@@ -18,6 +18,7 @@ function GifPlayer(p) {
             animation();
         },
         imageIndex = 0,
+        imageIndexCurrent = 0,
         delay
     ;
 
@@ -99,15 +100,15 @@ function GifPlayer(p) {
     p.onStartWheel = (durationSec) => {
         isAnimated = true;
 
-        p.randomizeImage();
-
-        let drawCallback = (v) => {
-            delay = v;
-            image.delay(delay);
-        };
-        const minDelay = gifList[imageIndex].min,
-            maxDelay = gifList[imageIndex].max
+        const minDelay = gifList[imageIndexCurrent].min,
+            maxDelay = gifList[imageIndexCurrent].max,
+            drawCallback = (v) => {
+                delay = v;
+                image.delay(delay);
+            }
         ;
+
+        p.randomizeImage();
 
         createAnimation(drawCallback, maxDelay, minDelay, durationSec * 1000 / 2, () => {
             createAnimation(drawCallback, minDelay, maxDelay, durationSec * 1000 / 2, () => {}, easeInCirc)
@@ -128,6 +129,7 @@ function GifPlayer(p) {
         image.delay(delay);
     };
     p.randomizeImage = () => {
+        imageIndexCurrent = imageIndex;
         image = imageLoading;
         image.delay(delay);
 

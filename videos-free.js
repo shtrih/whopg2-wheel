@@ -20,7 +20,6 @@ const videosFree = [
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 38, 26],
     ['videos/HOOD NARUTO  pt.3 (full video) naruto vs sasuke.mp4', 46, 25],
     // ['videos/HOOD NARUTO  pt.4 (full video) naruto vs pain.mp4', 23, 32],
-    'videos/[Re-upload] [1080p] HONK HONK.mp4',
     'videos/U GOT Яйца.mp4',
     ['videos/dj-eban2.mp4', 0, 30],
     () => p5Wheel.random([

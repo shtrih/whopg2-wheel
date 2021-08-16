@@ -26,4 +26,5 @@ const videosProtected = [
     ['videos/dmca/flexair5.mp4', 0, 26],
     ['videos/dmca/cyberslav.mp4', 0, 30],
     ['videos/dmca/anime01.mp4', 0, 27],
+    ['videos/[Re-upload] [1080p] HONK HONK.mp4', 0, 26],
 ];

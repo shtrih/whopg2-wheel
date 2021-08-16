@@ -23,6 +23,9 @@ class PresetManager {
             streamers: [
                 new PresetAll(true),
             ],
+            pvp: [
+                new PresetAll(true)
+            ],
         };
         this._nodes = {};
     }

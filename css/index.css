@@ -481,3 +481,8 @@ div:hover > #copy-last-selected {
 div > #copy-last-selected:active {
 	margin-top: 3px;
 }
+
+#pvp0 + label,
+#streamers0 + label {
+	display: none;
+}

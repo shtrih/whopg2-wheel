@@ -565,9 +565,9 @@ const dataSets = {
     streamers: [
         {title: 'liz0N', image: '/streamers/liz0n.png'},
         {title: 'NAMVSEYASNO', image: '/streamers/NAMVSEYASNO.png'},
-        {title: 'praden', image: '/streamers/praden.jpg'},
-        {title: 'RoadHouse', image: '/streamers/roadhouse.png'},
-        {title: 'SgtGrafoyni', image: '/streamers/sgtgrafoyni.jpeg'},
+        {title: 'praden', image: '/streamers/Praden.png'},
+        {title: 'RoadHouse', image: '/streamers/RoadHouse.png'},
+        {title: 'SgtGrafoyni', image: '/streamers/SgtGrafoyni.png'},
         {title: 'usachman', image: '/streamers/usachman.png'},
     ],
     pvp: [

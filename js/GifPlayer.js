@@ -8,6 +8,7 @@ function GifPlayer(p) {
             {name: '3x_1', min: 50, max: 200},
             {name: '3x_2', min: 15, max: 200},
             {name: '3x_3', min: 15, max: 200},
+            {name: 'Scan', min: 8, max: 40},
         ]
     ;
     let image,

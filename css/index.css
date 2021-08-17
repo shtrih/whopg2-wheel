@@ -478,6 +478,7 @@ div > #copy-last-selected:active {
 	margin-top: 3px;
 }
 
+#injuries0 + label,
 #pvp0 + label,
 #streamers0 + label {
 	display: none;

@@ -26,6 +26,7 @@ const videosFree = [
         ['videos/Пузантос - Бумаги [Morrowind].mp4', 129],
         ['videos/Пузантос - Бумаги [Morrowind].mp4', 75, 30],
     ]),
+    'videos/04.mp4',
     'videos/06.mp4',
     'videos/16.mp4',
 
@@ -74,4 +75,10 @@ const videosFree = [
     ['videos/Моршу RTX - Ремикс_Morshu Remix.mp4', 0, 36],
     ['videos/ОЙ - ОЙ НРАВИТСЯ.mp4', 0, 30],
     ['videos/цiногриз!.mp4', 0, 17],
+    ['videos/hey.mp4', 0, 27],
+    ['videos/isus.mp4', 0, 30],
+    ['videos/jojo.mp4', 0, 25],
+    ['videos/lojka.mp4', 0, 28],
+    ['videos/tarakan.mp4', 0, 28],
+    ['videos/Бондюэль - Олимпиада.mp4', 0, 29],
 ];

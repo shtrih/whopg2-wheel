@@ -181,7 +181,8 @@ const
     lastWheelTextEl = document.getElementById('last-selected-text'),
     onStopLastTextHandler = () => {
         lastSelectedText = selectedText;
-        lastWheelTextEl.innerHTML = `Выпало в прошлый раз: «${lastSelectedText}»`
+        lastWheelTextEl.innerHTML = `Выпало в прошлый раз: «${lastSelectedText}»`;
+        document.getElementById('copy-last-selected').setAttribute('style', 'visibility: visible')
     },
     lastWheelBtnEl = document.getElementById('copy-last-selected'),
     lastWheelLinkHandler = function(e) {

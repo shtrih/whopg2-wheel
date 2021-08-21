@@ -325,6 +325,7 @@ button:disabled {
 .dialog .presets {
 	text-align: left;
 	margin-bottom: 0.5em;
+	user-select: none;
 }
 
 .dialog .presets span:nth-child(1) > label {
@@ -343,6 +344,9 @@ button:disabled {
 	display: inline-block;
 	line-height: 1em;
 	padding-bottom: 3px;
+}
+.dialog .presets label:active {
+	box-shadow: 0 3px 0 0 #ccc;
 }
 .dialog .presets label,
 .dialog .presets a {

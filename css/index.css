@@ -328,11 +328,17 @@ button:disabled {
 	user-select: none;
 }
 
-.dialog .presets span:nth-child(1) > label {
-	display: inline-block; /* для ↓↓↓ */
-}
+/*.dialog .presets span:nth-child(1) > label {*/
+/*	display: inline-block; !* для ↓↓↓ *!*/
+/*}*/
 .dialog .presets span:nth-child(1) > label::first-letter {
 	text-transform: uppercase;
+}
+/* в Firefox почему-то uppercase отображается криво, поэтому только в нем отключаем */
+@supports (-moz-appearance:none) {
+	.dialog .presets span:nth-child(1) > label::first-letter {
+		text-transform: none;
+	}
 }
 .dialog .presets [type="radio"] {
 	display: none;

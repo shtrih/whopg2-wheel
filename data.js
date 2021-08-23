@@ -548,6 +548,7 @@ const dataSets = {
         {title: 'Ноги', image: '/accessory/170.png'},
         {title: 'Левая рука', image: '/accessory/167.png'},
         {title: 'Правая рука', image: '/accessory/156.png'},
+        {title: 'Избежать ранения (Серебрян1к)', image: '/mates/23.png'},
     ],
     coin: [
         {title: 'Орёл',  image: '/coins/russia-100-rubles-1993-ob.png'},

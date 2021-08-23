@@ -95,6 +95,22 @@ class PresetImplantL3 extends Preset {
     }
 }
 
+class PresetInjuries extends Preset {
+    constructor(isDefault) {
+        const presetInjuries = [].concat(dataSets.injuries);
+        // ласт елемент должен быть отжат
+        presetInjuries.pop();
+
+        super(
+            'все',
+            presetInjuries,
+            true,
+            isDefault,
+            false
+        );
+    }
+}
+
 class PresetGroup extends Preset {
     constructor(title) {
         super(

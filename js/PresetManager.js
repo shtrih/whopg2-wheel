@@ -17,7 +17,7 @@ class PresetManager {
                 new PresetNothing(),
             ],
             injuries: [
-                new PresetAll(true, 'всё'),
+                new PresetInjuries(true),
             ],
             streamers: [
                 new PresetAll(true),

@@ -137,7 +137,7 @@ editButton.addEventListener('click', function () {
 
     editPresets.innerHTML = '';
     editPresets.append(...presetManager.getNodes(currentDataSet));
-    presetManager.renderOptions(editedDataSets[currentDataSet]);
+    presetManager.renderOptions(editedDataSets[currentDataSet], currentDataSet);
 });
 editConfirmButton.addEventListener('click', function () {
     editDialog.style.display = 'none';

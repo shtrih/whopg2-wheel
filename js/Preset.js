@@ -46,7 +46,7 @@ class Preset {
     }
 
     handleClick() {
-        this._presetManager.activePreset = this;
+        this._presetManager.setActivePreset(this, currentDataSet);
 
         resetEditedDataSet(!this._isTurnOn);
 

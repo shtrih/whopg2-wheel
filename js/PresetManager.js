@@ -27,6 +27,7 @@ class PresetManager {
             ],
         };
         this._nodes = {};
+        this._activePresets = {};
     }
 
     hasPreset(dataSetKey) {
@@ -61,12 +62,13 @@ class PresetManager {
 
     /**
      * @param {Preset} preset
+     * @param {string} dataSetKey
      */
-    set activePreset(preset) {
-        this._activePreset = preset
+    setActivePreset(preset, dataSetKey) {
+        this._activePresets[dataSetKey] = preset;
     }
 
-    renderOptions(dataObject) {
-        this._activePreset.renderOptions(dataObject);
+    renderOptions(dataObject, dataSetKey) {
+        this._activePresets[dataSetKey].renderOptions(dataObject);
     }
 }

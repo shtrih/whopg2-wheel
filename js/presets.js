@@ -111,6 +111,19 @@ class PresetInjuries extends Preset {
     }
 }
 
+class PresetPvp extends Preset {
+    constructor(isDefault) {
+        const sliceFrom = 6; // сколько отжать
+        super(
+            'все',
+            [].concat(dataSets.pvp.slice(sliceFrom, dataSets.pvp.length)),
+            true,
+            isDefault,
+            false
+        );
+    }
+}
+
 class PresetGroup extends Preset {
     constructor(title) {
         super(

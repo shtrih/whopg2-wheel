@@ -23,7 +23,7 @@ class PresetManager {
                 new PresetAll(true),
             ],
             pvp: [
-                new PresetAll(true)
+                new PresetPvp(true)
             ],
         };
         this._nodes = {};

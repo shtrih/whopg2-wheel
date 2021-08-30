@@ -48,8 +48,11 @@ function WheelSketch(_p5) {
         _p5.triggerSelectItem();
     };
 
-    _p5.setVideos = function (videosList) {
-        video = new Video(videosList);
+    /**
+     * @param {Video} videos
+     */
+    _p5.setVideo = function (videos) {
+        video = videos;
     };
 
     _p5.onAfterSetup = function() {};

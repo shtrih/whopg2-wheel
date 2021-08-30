@@ -12,10 +12,11 @@ class Video {
     /**
      * @type Array videoURLs
      */
-    constructor(videoURLs) {
+    constructor(videoURLs, urlPathPrefix) {
         this._current_index = null;
         this._current_video = null;
         this._urls = videoURLs;
+        this._urlPathPrefix = urlPathPrefix || '';
         /**@type HTMLVideoElement */
         this._video = document.querySelector('video');
         /**@type HTMLSourceElement*/
@@ -74,6 +75,7 @@ class Video {
             this._source.src = video[ Video.KEY_URL ];
             this._duration = video[ Video.KEY_DURATION ] || 0;
         }
+        this._source.src = this._urlPathPrefix + this._source.src;
         this._current_video = video;
 
         this._video.load();

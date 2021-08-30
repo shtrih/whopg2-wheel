@@ -70,12 +70,13 @@ class Video {
             video = this._urls[ this._current_index ]();
         }
 
-        this._source.src = video;
         if (Array.isArray(video)) {
-            this._source.src = video[ Video.KEY_URL ];
+            this._source.src = this._urlPathPrefix + video[ Video.KEY_URL ];
             this._duration = video[ Video.KEY_DURATION ] || 0;
         }
-        this._source.src = this._urlPathPrefix + this._source.src;
+        else {
+            this._source.src = this._urlPathPrefix + video;
+        }
         this._current_video = video;
 
         this._video.load();
